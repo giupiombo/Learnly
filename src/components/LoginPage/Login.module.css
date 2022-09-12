@@ -8,6 +8,7 @@
 .input label {
   display: block;
   margin-bottom: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .input input {
@@ -18,9 +19,48 @@
   border-radius: 5px;
   padding: 0.15rem;
   margin-bottom: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .input input:focus {
   outline: none;
-  border-color: #4f005f;
+  border-color: black;
+}
+
+.input h2 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input button.text1 {
+  border: none;
+  background-color: inherit;
+  padding: 10px 10px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input button.text1:hover {
+  color: #0090ac;
+}
+
+.input button.text2 {
+  border: none;
+  background-color: inherit;
+  padding: 10px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input button.text2:hover {
+  color: #0090ac;
 }
