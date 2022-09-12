@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Login from './components/LoginPage/Login';
+import Footer from './components/UI/Footer';
 import Header from './components/UI/Header';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <div>
       <Header />
       <Login onLogin={loginHandler} />
+      <Footer />
     </div>
   );
 }

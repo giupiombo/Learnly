@@ -2,3 +2,8 @@
   background: #0090ac;
   padding: 1rem;
 }
+
+.header h2 {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

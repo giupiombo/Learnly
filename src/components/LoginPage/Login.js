@@ -31,6 +31,12 @@ const Login = (props) => {
     setEnteredPassword(event.target.value);
   };
 
+  // move to a different page
+  const forgotPasswordHandler = () => {};
+
+  // move to a different page
+  const signUpHandler = () => {};
+
   return (
     <Card className={classes.input}>
       <h2>Login</h2>
@@ -49,7 +55,13 @@ const Login = (props) => {
           value={enteredPassword}
           onChange={passwordChangeHandler}
         />
+        <button className={classes.text1} onClick={forgotPasswordHandler}>
+          Forgot your password?
+        </button>
         <Button type="submit">Login</Button>
+        <button className={classes.text2} onClick={signUpHandler}>
+          New to Learnly? Sign Up!
+        </button>
       </form>
     </Card>
   );
