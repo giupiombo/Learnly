@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Login from './components/LoginPage/Login';
+import Header from './components/UI/Header';
 
 function App() {
+  const [usersList, setUsersList] = useState([]);
+  //userList will be used to validate the user later
+
+  const loginHandler = (username, password) => {
+    setUsersList((prevUsersList) => {
+      return [
+        ...prevUsersList,
+        {
+          username: username,
+          password: password,
+          id: Math.random().toString(),
+        },
+      ];
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Login onLogin={loginHandler} />
     </div>
   );
 }
