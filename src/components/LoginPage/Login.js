@@ -2,10 +2,13 @@ import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './Login.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
   const [enteredUsername, setEnteredUsername] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
+
+  let navigate = useNavigate();
 
   const loginHandler = (event) => {
     event.preventDefault();
@@ -31,11 +34,13 @@ const Login = (props) => {
     setEnteredPassword(event.target.value);
   };
 
-  // move to a different page
-  const forgotPasswordHandler = () => {};
+  const forgotPasswordHandler = () => {
+    navigate('/forgotPassword');
+  };
 
-  // move to a different page
-  const signUpHandler = () => {};
+  const signUpHandler = () => {
+    navigate('/createAccount');
+  };
 
   return (
     <Card className={classes.input}>
@@ -51,7 +56,7 @@ const Login = (props) => {
         <label htmlFor="password">Password</label>
         <input
           id="password"
-          type="text"
+          type="password"
           value={enteredPassword}
           onChange={passwordChangeHandler}
         />
