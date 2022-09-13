@@ -1,31 +1,18 @@
-import { useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
 import './App.css';
-import Login from './components/LoginPage/Login';
-import Footer from './components/UI/Footer';
-import Header from './components/UI/Header';
+import CreateAccountDisplay from './components/CreateAccountPage/CreateAccountDisplay';
+import ForgotPassword from './components/ForgotPasswordPage/ForgotPassword';
+import LoginDisplay from './components/LoginPage/LoginDisplay';
 
 function App() {
-  const [usersList, setUsersList] = useState([]);
-  //userList will be used to validate the user later
-
-  const loginHandler = (username, password) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        {
-          username: username,
-          password: password,
-          id: Math.random().toString(),
-        },
-      ];
-    });
-  };
-
   return (
     <div>
-      <Header />
-      <Login onLogin={loginHandler} />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<LoginDisplay />} />
+        <Route path="/createAccount" element={<CreateAccountDisplay />} />
+        <Route path="/forgotPassword" element={<ForgotPassword />} />
+      </Routes>
     </div>
   );
 }
