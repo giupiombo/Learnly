@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
-  const [enteredUsername, setEnteredUsername] = useState('');
+  const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
 
   let navigate = useNavigate();
@@ -14,20 +14,20 @@ const Login = (props) => {
     event.preventDefault();
 
     if (
-      enteredUsername.trim().length === 0 ||
+      enteredEmail.trim().length === 0 ||
       enteredPassword.trim().length === 0
     ) {
       return;
     }
 
-    props.onLogin(enteredUsername, enteredPassword);
+    props.onLogin(enteredEmail, enteredPassword);
 
-    setEnteredUsername('');
+    setEnteredEmail('');
     setEnteredPassword('');
   };
 
-  const usernameChangeHandler = (event) => {
-    setEnteredUsername(event.target.value);
+  const emailChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
   };
 
   const passwordChangeHandler = (event) => {
@@ -46,12 +46,12 @@ const Login = (props) => {
     <Card className={classes.input}>
       <h2>Login</h2>
       <form onSubmit={loginHandler}>
-        <label htmlFor="username">Username</label>
+        <label htmlFor="email">Email</label>
         <input
-          id="username"
+          id="email"
           type="text"
-          value={enteredUsername}
-          onChange={usernameChangeHandler}
+          value={enteredEmail}
+          onChange={emailChangeHandler}
         />
         <label htmlFor="password">Password</label>
         <input
