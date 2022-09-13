@@ -7,12 +7,12 @@ const LoginDisplay = () => {
   const [usersList, setUsersList] = useState([]);
   //userList will be used to validate the user later
 
-  const loginHandler = (username, password) => {
+  const loginHandler = (email, password) => {
     setUsersList((prevUsersList) => {
       return [
         ...prevUsersList,
         {
-          username: username,
+          email: email,
           password: password,
           id: Math.random().toString(),
         },

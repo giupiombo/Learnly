@@ -1,0 +1,55 @@
+.input {
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input input {
+  font: inherit;
+  display: block;
+  width: 100%;
+  border: 1px solid #0090ac;
+  border-radius: 5px;
+  padding: 0.15rem;
+  margin-bottom: 0.5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input input:focus {
+  outline: none;
+  border-color: black;
+}
+
+.input h2 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input Button {
+  margin-top: 20px;
+}
+
+.input button.text {
+  border: none;
+  background-color: inherit;
+  padding: 10px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  display: block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input button.text:hover {
+  color: #0090ac;
+}
