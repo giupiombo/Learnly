@@ -108,16 +108,15 @@ const CreateAccount = (props) => {
           value={enteredReEnterPassword}
           onChange={reEnterPasswordChangeHandler}
         />
-<<<<<<< Updated upstream
+
         <label htmlFor="account-type">Account Type</label>
         <select value={enteredAccountType} onChange={accountTypeChangeHandler}>
           <option value="student">Student</option>
           <option value="professor">Professor</option>
         </select>
         <Button type="submit">Create Account</Button>
-=======
+
         <Button type="submit" onClick={addUser}>Create Account</Button>
->>>>>>> Stashed changes
         <button className={classes.text} onClick={backHandler}>
           Already have an account? Log in!
         </button>
