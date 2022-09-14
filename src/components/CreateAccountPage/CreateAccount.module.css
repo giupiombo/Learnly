@@ -53,3 +53,10 @@
 .input button.text:hover {
   color: #0090ac;
 }
+
+.input select {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  width: 610px;
+  border: 1px solid #0090ac;
+}

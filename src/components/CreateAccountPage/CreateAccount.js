@@ -9,6 +9,7 @@ const CreateAccount = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
   const [enteredReEnterPassword, setEnteredReEnterPassword] = useState('');
+  const [enteredAccountType, setEnteredAccountType] = useState('');
 
   let navigate = useNavigate();
 
@@ -28,13 +29,15 @@ const CreateAccount = (props) => {
       enteredName,
       enteredEmail,
       enteredPassword,
-      enteredReEnterPassword
+      enteredReEnterPassword,
+      enteredAccountType
     );
 
     setEnteredName('');
     setEnteredEmail('');
     setEnteredPassword('');
     setEnteredReEnterPassword('');
+    setEnteredAccountType('');
   };
 
   const nameChangeHandler = (event) => {
@@ -51,6 +54,10 @@ const CreateAccount = (props) => {
 
   const reEnterPasswordChangeHandler = (event) => {
     setEnteredReEnterPassword(event.target.value);
+  };
+
+  const accountTypeChangeHandler = (event) => {
+    setEnteredAccountType(event.target.value);
   };
 
   const backHandler = () => {
@@ -89,6 +96,11 @@ const CreateAccount = (props) => {
           value={enteredReEnterPassword}
           onChange={reEnterPasswordChangeHandler}
         />
+        <label htmlFor="account-type">Account Type</label>
+        <select value={enteredAccountType} onChange={accountTypeChangeHandler}>
+          <option value="student">Student</option>
+          <option value="professor">Professor</option>
+        </select>
         <Button type="submit">Create Account</Button>
         <button className={classes.text} onClick={backHandler}>
           Already have an account? Log in!
