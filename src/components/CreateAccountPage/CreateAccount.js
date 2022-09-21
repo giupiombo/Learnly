@@ -3,7 +3,7 @@ import Button from '../UI/Button';
 import classes from './CreateAccount.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios'
+import Axios from 'axios';
 
 const CreateAccount = (props) => {
   const [enteredName, setEnteredName] = useState('');
@@ -17,11 +17,11 @@ const CreateAccount = (props) => {
       name: enteredName,
       email: enteredEmail,
       password: enteredPassword,
-      renterPassword: enteredReEnterPassword
+      renterPassword: enteredReEnterPassword,
     }).then(() => {
-      console.log("Success")
-    })
-  }
+      console.log('Success');
+    });
+  };
 
   let navigate = useNavigate();
 
@@ -87,7 +87,7 @@ const CreateAccount = (props) => {
           value={enteredName}
           onChange={nameChangeHandler}
         />
-        <label htmlFor="name">Email</label>
+        <label htmlFor="email">Email</label>
         <input
           id="email"
           type="text"
@@ -114,9 +114,9 @@ const CreateAccount = (props) => {
           <option value="student">Student</option>
           <option value="professor">Professor</option>
         </select>
-        <Button type="submit">Create Account</Button>
-
-        <Button type="submit" onClick={addUser}>Create Account</Button>
+        <Button type="submit" onClick={addUser}>
+          Create Account
+        </Button>
         <button className={classes.text} onClick={backHandler}>
           Already have an account? Log in!
         </button>

@@ -14,5 +14,21 @@
 .header h2 {
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-left: 30px;
+}
+
+.header button {
+  border: none;
+  background-color: inherit;
+  padding: 10px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header button:hover {
+  color: white;
+}
+
+.header span {
+  margin-left: 500px;
 }
