@@ -5,7 +5,7 @@ import CreateAccountDisplay from './components/CreateAccountPage/CreateAccountDi
 import ForgotPasswordDisplay from './components/ForgotPasswordPage/ForgotPasswordDisplay';
 import LoginDisplay from './components/LoginPage/LoginDisplay';
 import AddCourseDisplay from './components/Professor/AddCourseDisplay';
-import MyCourses from './components/Professor/MyCourses';
+import MyCoursesDisplay from './components/Professor/MyCoursesDisplay';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/createAccount" element={<CreateAccountDisplay />} />
         <Route path="/forgotPassword" element={<ForgotPasswordDisplay />} />
         <Route path="/addCourse" element={<AddCourseDisplay />} />
-        <Route path="/myCourses" element={<MyCourses />} />
+        <Route path="/myCourses" element={<MyCoursesDisplay />} />
       </Routes>
     </div>
   );

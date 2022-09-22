@@ -62,7 +62,7 @@ const AddCourse = (props) => {
   };
 
   const backHandler = () => {
-    // navigate('/');
+    navigate('/myCourses');
   };
 
   return (

@@ -1,0 +1,9 @@
+.course {
+  align-content: center;
+  margin-top: 125px;
+}
+.course h1 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
