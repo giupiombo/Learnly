@@ -1,69 +1,100 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useInput from '../../hooks/use-input';
 import Button from '../UI/Button';
 import Card from '../UI/Card';
-
 import classes from './AddCourse.module.css';
 
+const isNotEmpty = (value) => value.trim() !== '';
+const isPrice = (value) => value > 0;
+
 const AddCourse = (props) => {
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredDescription, setEnteredDescription] = useState('');
-  const [enteredCategory, setEnteredCategory] = useState('');
-  const [enteredPrice, setEnteredPrice] = useState('');
-  const [enteredVideo, setEnteredVideo] = useState('');
+  const {
+    value: titleValue,
+    isValid: titleIsValid,
+    hasError: titleHasError,
+    valueChangeHandler: titleChangeHandler,
+    inputBlurHandler: titleBlurHandler,
+    reset: resetTitle,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: descriptionValue,
+    isValid: descriptionIsValid,
+    hasError: descriptionHasError,
+    valueChangeHandler: descriptionChangeHandler,
+    inputBlurHandler: descriptionBlurHandler,
+    reset: resetDescription,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: categoryValue,
+    isValid: categoryIsValid,
+    valueChangeHandler: categoryChangeHandler,
+    reset: resetCategory,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: priceValue,
+    isValid: priceIsValid,
+    hasError: priceHasError,
+    valueChangeHandler: priceChangeHandler,
+    inputBlurHandler: priceBlurHandler,
+    reset: resetPrice,
+  } = useInput(isPrice);
+
+  const {
+    value: videoValue,
+    isValid: videoIsValid,
+    hasError: videoHasError,
+    valueChangeHandler: videoChangeHandler,
+    inputBlurHandler: videoBlurHandler,
+    reset: resetVideo,
+  } = useInput(isNotEmpty);
 
   let navigate = useNavigate();
+
+  let formIsValid = false;
+
+  if (
+    titleIsValid &&
+    descriptionIsValid &&
+    categoryIsValid &&
+    priceIsValid &&
+    videoIsValid
+  ) {
+    formIsValid = true;
+  }
 
   const addCourseHandler = (event) => {
     event.preventDefault();
 
-    if (
-      enteredTitle.trim().length === 0 ||
-      enteredDescription.trim().length === 0 ||
-      enteredPrice.trim().length === 0 ||
-      enteredVideo.trim().length === 0
-    ) {
+    if (!formIsValid) {
       return;
     }
 
     props.onAddCourse(
-      enteredTitle,
-      enteredDescription,
-      enteredCategory,
-      enteredPrice,
-      enteredVideo
+      titleValue,
+      descriptionValue,
+      categoryValue,
+      priceValue,
+      videoValue
     );
 
-    setEnteredTitle('');
-    setEnteredDescription('');
-    setEnteredCategory('');
-    setEnteredPrice('');
-    setEnteredVideo('');
-  };
-
-  const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-
-  const descriptionChangeHandler = (event) => {
-    setEnteredDescription(event.target.value);
-  };
-
-  const categoryChangeHandler = (event) => {
-    setEnteredCategory(event.target.value);
-  };
-
-  const priceChangeHandler = (event) => {
-    setEnteredPrice(event.target.value);
-  };
-
-  const videoChangeHandler = (event) => {
-    setEnteredVideo(event.target.value);
+    resetTitle();
+    resetDescription();
+    resetCategory();
+    resetPrice();
+    resetVideo();
   };
 
   const backHandler = () => {
     navigate('/myCourses');
   };
+
+  const titleClasses = titleHasError ? classes.invalid : classes;
+  const descriptionClasses = descriptionHasError ? classes.invalid : classes;
+  const priceClasses = priceHasError ? classes.invalid : classes;
+  const videoClasses = videoHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -71,40 +102,53 @@ const AddCourse = (props) => {
       <form onSubmit={addCourseHandler}>
         <label htmlFor="title">Title</label>
         <input
+          className={titleClasses}
           id="title"
           type="text"
-          value={enteredTitle}
+          value={titleValue}
           onChange={titleChangeHandler}
+          onBlur={titleBlurHandler}
         />
         <label htmlFor="description">Description</label>
         <textarea
+          className={descriptionClasses}
           id="description"
           type="text"
-          value={enteredDescription}
+          value={descriptionValue}
           onChange={descriptionChangeHandler}
+          onBlur={descriptionBlurHandler}
         />
         <label htmlFor="category">Category</label>
-        <select value={enteredCategory} onChange={categoryChangeHandler}>
+        <select value={categoryValue} onChange={categoryChangeHandler}>
+          <option value="null"></option>
           <option value="web-development">Web Development</option>
           <option value="mathematics">Mathematics</option>
           <option value="data-science">Data Science</option>
         </select>
         <label htmlFor="price">Price</label>
         <input
+          className={priceClasses}
           id="price"
           type="number"
           min="1"
-          value={enteredPrice}
+          value={priceValue}
           onChange={priceChangeHandler}
+          onBlur={priceBlurHandler}
         />
         <label htmlFor="video">Video</label>
         <input
+          className={videoClasses}
           id="video"
           type="text"
-          value={enteredVideo}
+          value={videoValue}
           onChange={videoChangeHandler}
+          onBlur={videoBlurHandler}
         />
-        <Button type="submit" onClick={addCourseHandler}>
+        <Button
+          disabled={!formIsValid}
+          type="submit"
+          onClick={addCourseHandler}
+        >
           Add Course
         </Button>
         <button className={classes.text} onClick={backHandler}>

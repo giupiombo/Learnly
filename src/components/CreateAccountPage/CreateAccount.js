@@ -1,80 +1,113 @@
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './CreateAccount.module.css';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import useInput from '../../hooks/use-input';
+
+const isNotEmpty = (value) => value.trim() !== '';
+const isEmail = (value) => value.includes('@');
 
 const CreateAccount = (props) => {
-  const [enteredName, setEnteredName] = useState('');
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [enteredReEnterPassword, setEnteredReEnterPassword] = useState('');
-  const [enteredAccountType, setEnteredAccountType] = useState('');
+  const {
+    value: nameValue,
+    isValid: nameIsValid,
+    hasError: nameHasError,
+    valueChangeHandler: nameChangeHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetName,
+  } = useInput(isNotEmpty);
 
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmail);
+
+  const {
+    value: passwordValue,
+    isValid: passwordIsValid,
+    hasError: passwordHasError,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: reEnterPasswordValue,
+    isValid: reEnterPasswordIsValid,
+    hasError: reEnterPasswordHasError,
+    valueChangeHandler: reEnterPasswordChangeHandler,
+    inputBlurHandler: reEnterPasswordBlurHandler,
+    reset: resetReEnterPassword,
+  } = useInput((value) => value === passwordValue);
+
+  const {
+    value: accountTypeValue,
+    isValid: accountTypeIsValid,
+    valueChangeHandler: accountTypeChangeHandler,
+    reset: resetAccountType,
+  } = useInput(isNotEmpty);
+
+  let navigate = useNavigate();
+
+  let formIsValid = false;
+
+  if (
+    nameIsValid &&
+    emailIsValid &&
+    passwordIsValid &&
+    reEnterPasswordIsValid &&
+    accountTypeIsValid
+  ) {
+    formIsValid = true;
+  }
   const addUser = () => {
     Axios.post('http://localhost:3001/create', {
-      name: enteredName,
-      email: enteredEmail,
-      password: enteredPassword,
-      renterPassword: enteredReEnterPassword,
+      name: nameValue,
+      email: emailValue,
+      password: passwordValue,
+      renterPassword: reEnterPasswordValue,
     }).then(() => {
       console.log('Success');
     });
   };
 
-  let navigate = useNavigate();
-
   const createAccountHandler = (event) => {
     event.preventDefault();
 
-    if (
-      enteredName.trim().length === 0 ||
-      enteredEmail.trim().length === 0 ||
-      enteredPassword.trim().length === 0 ||
-      enteredReEnterPassword.trim().length === 0
-    ) {
+    if (!formIsValid) {
       return;
     }
 
     props.onCreateAccount(
-      enteredName,
-      enteredEmail,
-      enteredPassword,
-      enteredReEnterPassword,
-      enteredAccountType
+      nameValue,
+      emailValue,
+      passwordValue,
+      reEnterPasswordValue,
+      accountTypeValue
     );
 
-    setEnteredName('');
-    setEnteredEmail('');
-    setEnteredPassword('');
-    setEnteredReEnterPassword('');
-    setEnteredAccountType('');
-  };
-
-  const nameChangeHandler = (event) => {
-    setEnteredName(event.target.value);
-  };
-
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
-  };
-
-  const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
-  };
-
-  const reEnterPasswordChangeHandler = (event) => {
-    setEnteredReEnterPassword(event.target.value);
-  };
-
-  const accountTypeChangeHandler = (event) => {
-    setEnteredAccountType(event.target.value);
+    resetName();
+    resetEmail();
+    resetPassword();
+    resetReEnterPassword();
+    resetAccountType();
   };
 
   const backHandler = () => {
     navigate('/');
   };
+
+  const nameClasses = nameHasError ? classes.invalid : classes;
+  const emailClasses = emailHasError ? classes.invalid : classes;
+  const passwordClasses = passwordHasError ? classes.invalid : classes;
+  const reEnterPasswordClasses = reEnterPasswordHasError
+    ? classes.invalid
+    : classes;
 
   return (
     <Card className={classes.input}>
@@ -82,39 +115,48 @@ const CreateAccount = (props) => {
       <form onSubmit={createAccountHandler}>
         <label htmlFor="name">Name</label>
         <input
+          className={nameClasses}
           id="name"
           type="text"
-          value={enteredName}
+          value={nameValue}
           onChange={nameChangeHandler}
+          onBlur={nameBlurHandler}
         />
         <label htmlFor="email">Email</label>
         <input
+          className={emailClasses}
           id="email"
-          type="text"
-          value={enteredEmail}
+          type="email"
+          value={emailValue}
           onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
         />
         <label htmlFor="password">Password</label>
         <input
+          className={passwordClasses}
           id="password"
           type="password"
-          value={enteredPassword}
+          value={passwordValue}
           onChange={passwordChangeHandler}
+          onBlur={passwordBlurHandler}
         />
         <label htmlFor="re-enter-password">Re-enter Password</label>
         <input
+          className={reEnterPasswordClasses}
           id="re-enter-password"
           type="password"
-          value={enteredReEnterPassword}
+          value={reEnterPasswordValue}
           onChange={reEnterPasswordChangeHandler}
+          onBlur={reEnterPasswordBlurHandler}
         />
 
         <label htmlFor="account-type">Account Type</label>
-        <select value={enteredAccountType} onChange={accountTypeChangeHandler}>
+        <select value={accountTypeValue} onChange={accountTypeChangeHandler}>
+          <option value="null"></option>
           <option value="student">Student</option>
           <option value="professor">Professor</option>
         </select>
-        <Button type="submit" onClick={addUser}>
+        <Button disabled={!formIsValid} type="submit" onClick={addUser}>
           Create Account
         </Button>
         <button className={classes.text} onClick={backHandler}>

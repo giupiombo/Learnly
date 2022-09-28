@@ -1,37 +1,48 @@
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './Login.module.css';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useInput from '../../hooks/use-input';
+
+const isNotEmpty = (value) => value.trim() !== '';
+const isEmail = (value) => value.includes('@');
 
 const Login = (props) => {
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [enteredPassword, setEnteredPassword] = useState('');
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmail);
+
+  const {
+    value: passwordValue,
+    isValid: passwordIsValid,
+    valueChangeHandler: passwordChangeHandler,
+    inputBlurHandler: passwordBlurHandler,
+    reset: resetPassword,
+  } = useInput(isNotEmpty);
 
   let navigate = useNavigate();
+
+  let formIsValid = false;
+
+  if (emailIsValid && passwordIsValid) {
+    formIsValid = true;
+  }
 
   const loginHandler = (event) => {
     event.preventDefault();
 
-    if (
-      enteredEmail.trim().length === 0 ||
-      enteredPassword.trim().length === 0
-    ) {
+    if (!formIsValid) {
       return;
     }
 
-    props.onLogin(enteredEmail, enteredPassword);
+    props.onLogin(emailValue, passwordValue);
 
-    setEnteredEmail('');
-    setEnteredPassword('');
-  };
-
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
-  };
-
-  const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
+    resetEmail();
+    resetPassword();
   };
 
   const forgotPasswordHandler = () => {
@@ -49,16 +60,18 @@ const Login = (props) => {
         <label htmlFor="email">Email</label>
         <input
           id="email"
-          type="text"
-          value={enteredEmail}
+          type="email"
+          value={emailValue}
           onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
         />
         <label htmlFor="password">Password</label>
         <input
           id="password"
           type="password"
-          value={enteredPassword}
+          value={passwordValue}
           onChange={passwordChangeHandler}
+          onBlur={passwordBlurHandler}
         />
         <button className={classes.text1} onClick={forgotPasswordHandler}>
           Forgot your password?
