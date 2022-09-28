@@ -1,33 +1,46 @@
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './ForgotPassword.module.css';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useInput from '../../hooks/use-input';
+
+const isEmail = (value) => value.includes('@');
 
 const ForgotPassword = (props) => {
-  const [enteredEmail, setEnteredEmail] = useState('');
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmail);
 
   let navigate = useNavigate();
+
+  let formIsValid = false;
+
+  if (emailIsValid) {
+    formIsValid = true;
+  }
 
   const forgotPasswordHandler = (event) => {
     event.preventDefault();
 
-    if (enteredEmail.trim().length === 0) {
+    if (!formIsValid) {
       return;
     }
 
-    props.onForgotPassword(enteredEmail);
+    props.onForgotPassword(emailValue);
 
-    setEnteredEmail('');
-  };
-
-  const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+    resetEmail();
   };
 
   const backHandler = () => {
     navigate('/');
   };
+
+  const emailClasses = emailHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -35,10 +48,12 @@ const ForgotPassword = (props) => {
       <form onSubmit={forgotPasswordHandler}>
         <label htmlFor="email">Email</label>
         <input
+          className={emailClasses}
           id="email"
-          type="text"
-          value={enteredEmail}
+          type="email"
+          value={emailValue}
           onChange={emailChangeHandler}
+          onBlur={emailBlurHandler}
         />
         <Button type="submit">Recover Password</Button>
         <button className={classes.text} onClick={backHandler}>
