@@ -9,6 +9,7 @@ const LoginDisplay = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
+  let loggedUser;
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +28,7 @@ const LoginDisplay = () => {
 
       for (const key in responseData) {
         accounts.push({
+          name: responseData[key].user.name,
           email: responseData[key].user.email,
           password: responseData[key].user.password,
           accountType: responseData[key].user.accountType,
@@ -51,6 +53,7 @@ const LoginDisplay = () => {
         } else {
           navigate('/professorCourses');
         }
+        loggedUser = users[user];
       }
     }
   };
