@@ -72,13 +72,14 @@ const AddCourse = (props) => {
       return;
     }
 
-    props.onAddCourse(
-      titleValue,
-      descriptionValue,
-      categoryValue,
-      priceValue,
-      videoValue
-    );
+    props.onAddCourse({
+      title: titleValue,
+      description: descriptionValue,
+      category: categoryValue,
+      price: priceValue,
+      video: videoValue,
+      //author: loggedUser.name
+    });
 
     resetTitle();
     resetDescription();
@@ -151,7 +152,7 @@ const AddCourse = (props) => {
         >
           Add Course
         </Button>
-        <button className={classes.text} onClick={backHandler}>
+        <button type="button" className={classes.text} onClick={backHandler}>
           Cancel
         </button>
       </form>
