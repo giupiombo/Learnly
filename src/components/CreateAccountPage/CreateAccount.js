@@ -2,7 +2,7 @@ import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './CreateAccount.module.css';
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+// import Axios from 'axios';
 import useInput from '../../hooks/use-input';
 
 const isNotEmpty = (value) => value.trim() !== '';
@@ -65,16 +65,17 @@ const CreateAccount = (props) => {
   ) {
     formIsValid = true;
   }
-  const addUser = () => {
-    Axios.post('http://localhost:3001/create', {
-      name: nameValue,
-      email: emailValue,
-      password: passwordValue,
-      renterPassword: reEnterPasswordValue,
-    }).then(() => {
-      console.log('Success');
-    });
-  };
+
+  // const addUser = () => {
+  //   Axios.post('http://localhost:3001/create', {
+  //     name: nameValue,
+  //     email: emailValue,
+  //     password: passwordValue,
+  //     renterPassword: reEnterPasswordValue,
+  //   }).then(() => {
+  //     console.log('Success');
+  //   });
+  // };
 
   const createAccountHandler = (event) => {
     event.preventDefault();
@@ -83,13 +84,13 @@ const CreateAccount = (props) => {
       return;
     }
 
-    props.onCreateAccount(
-      nameValue,
-      emailValue,
-      passwordValue,
-      reEnterPasswordValue,
-      accountTypeValue
-    );
+    props.onCreateAccount({
+      name: nameValue,
+      email: emailValue,
+      password: passwordValue,
+      passwordCheck: reEnterPasswordValue,
+      accountType: accountTypeValue,
+    });
 
     resetName();
     resetEmail();
@@ -156,10 +157,10 @@ const CreateAccount = (props) => {
           <option value="student">Student</option>
           <option value="professor">Professor</option>
         </select>
-        <Button disabled={!formIsValid} type="submit" onClick={addUser}>
+        <Button disabled={!formIsValid} type="submit" /*onClick={addUser}*/>
           Create Account
         </Button>
-        <button className={classes.text} onClick={backHandler}>
+        <button type="button" className={classes.text} onClick={backHandler}>
           Already have an account? Log in!
         </button>
       </form>

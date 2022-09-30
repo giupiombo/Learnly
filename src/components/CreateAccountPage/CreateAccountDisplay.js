@@ -1,25 +1,18 @@
-import { useState } from 'react';
 import Footer from '../UI/Footer';
 import Header from '../UI/Header';
 import CreateAccount from './CreateAccount';
 
 const CreateAccountDisplay = () => {
-  const [usersList, setUsersList] = useState([]);
-  //userList will be used to validate the user later
-
-  const createAccountHandler = (name, email, password, reEnterPassword) => {
-    setUsersList((prevUsersList) => {
-      return [
-        ...prevUsersList,
-        {
-          name: name,
-          email: email,
-          password: password,
-          reEnterPassword: reEnterPassword,
-          id: Math.random().toString(),
-        },
-      ];
-    });
+  const createAccountHandler = async (accountData) => {
+    await fetch(
+      'https://react-http-bb74b-default-rtdb.firebaseio.com/accounts.json',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          user: accountData,
+        }),
+      }
+    );
   };
 
   return (
