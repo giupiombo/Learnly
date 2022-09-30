@@ -6,6 +6,7 @@ import ForgotPasswordDisplay from './components/ForgotPasswordPage/ForgotPasswor
 import LoginDisplay from './components/LoginPage/LoginDisplay';
 import AddCourseDisplay from './components/Professor/AddCourseDisplay';
 import MyCoursesDisplay from './components/Professor/MyCoursesDisplay';
+import MyCourses from './components/Student/MyCourses';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Route path="/createAccount" element={<CreateAccountDisplay />} />
         <Route path="/forgotPassword" element={<ForgotPasswordDisplay />} />
         <Route path="/addCourse" element={<AddCourseDisplay />} />
-        <Route path="/myCourses" element={<MyCoursesDisplay />} />
+        <Route path="/professorCourses" element={<MyCoursesDisplay />} />
+        <Route path="/studentCourses" element={<MyCourses />} />
       </Routes>
     </div>
   );

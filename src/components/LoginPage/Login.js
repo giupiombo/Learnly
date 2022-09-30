@@ -73,11 +73,15 @@ const Login = (props) => {
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
         />
-        <button className={classes.text1} onClick={forgotPasswordHandler}>
+        <button
+          type="button"
+          className={classes.text1}
+          onClick={forgotPasswordHandler}
+        >
           Forgot your password?
         </button>
         <Button type="submit">Login</Button>
-        <button className={classes.text2} onClick={signUpHandler}>
+        <button type="button" className={classes.text2} onClick={signUpHandler}>
           New to Learnly? Sign Up!
         </button>
       </form>
