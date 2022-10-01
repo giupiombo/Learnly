@@ -4,7 +4,7 @@ import classes from './HeaderProfessor.module.css';
 const HeaderProfessor = () => {
   let navigate = useNavigate();
   const myCoursesHandler = () => {
-    navigate('/myCourses');
+    navigate('/professorCourses');
   };
 
   const addCoursesHandler = () => {

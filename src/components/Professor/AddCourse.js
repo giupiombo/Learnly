@@ -89,7 +89,7 @@ const AddCourse = (props) => {
   };
 
   const backHandler = () => {
-    navigate('/myCourses');
+    navigate('/professorCourses');
   };
 
   const titleClasses = titleHasError ? classes.invalid : classes;
