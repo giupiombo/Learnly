@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import UserContext from '../../user/user-context';
+import UserContext from '../../context/user-context';
 import CourseItem from './CourseItem';
 import classes from './MyCourses.module.css';
 
@@ -65,8 +65,6 @@ const MyCourses = () => {
       video={course.video}
     />
   ));
-
-  console.log(courses);
 
   return (
     <div className={classes.course}>

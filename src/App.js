@@ -5,9 +5,10 @@ import CreateAccountDisplay from './components/CreateAccountPage/CreateAccountDi
 import ForgotPasswordDisplay from './components/ForgotPasswordPage/ForgotPasswordDisplay';
 import LoginDisplay from './components/LoginPage/LoginDisplay';
 import AddCourseDisplay from './components/Professor/AddCourseDisplay';
-import MyCoursesDisplay from './components/Professor/ProfessorCoursesDisplay';
-import MyCourses from './components/Student/MyCourses';
-import { UserContextProvider } from './user/user-context';
+import ProfessorCoursesDisplay from './components/Professor/ProfessorCoursesDisplay';
+import CategoriesDisplay from './components/Student/CategoriesDisplay';
+import StudentCoursesDisplay from './components/Student/StudentCoursesDisplay.js';
+import { UserContextProvider } from './context/user-context';
 
 function App() {
   return (
@@ -18,8 +19,12 @@ function App() {
           <Route path="/createAccount" element={<CreateAccountDisplay />} />
           <Route path="/forgotPassword" element={<ForgotPasswordDisplay />} />
           <Route path="/addCourse" element={<AddCourseDisplay />} />
-          <Route path="/professorCourses" element={<MyCoursesDisplay />} />
-          <Route path="/studentCourses" element={<MyCourses />} />
+          <Route
+            path="/professorCourses"
+            element={<ProfessorCoursesDisplay />}
+          />
+          <Route path="/studentCourses" element={<StudentCoursesDisplay />} />
+          <Route path="/categories" element={<CategoriesDisplay />} />
         </Routes>
       </UserContextProvider>
     </div>

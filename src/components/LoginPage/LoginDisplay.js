@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserContext from '../../user/user-context';
+import UserContext from '../../context/user-context';
 import Footer from '../UI/Footer';
 import Header from '../UI/Header';
 import Login from './Login';
