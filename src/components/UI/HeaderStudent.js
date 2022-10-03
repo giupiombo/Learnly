@@ -1,19 +1,19 @@
-import { useNavigate } from 'react-router-dom';
-import classes from './HeaderProfessor.module.css';
-import UserContext from '../../context/user-context';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../../context/user-context';
+import classes from './HeaderStudent.module.css';
 
-const HeaderProfessor = () => {
+const HeaderStudent = () => {
   const { setUser } = useContext(UserContext);
 
   let navigate = useNavigate();
 
   const myCoursesHandler = () => {
-    navigate('/professorCourses');
+    navigate('/StudentCourses');
   };
 
-  const addCoursesHandler = () => {
-    navigate('/addCourse');
+  const categoriesHandler = () => {
+    navigate('/categories');
   };
 
   const logoutHandler = () => {
@@ -23,12 +23,12 @@ const HeaderProfessor = () => {
   return (
     <header className={classes.header}>
       <h2>Learnly</h2>
-      <span></span>
       <button onClick={myCoursesHandler}>My Courses</button>
-      <button onClick={addCoursesHandler}>Add Courses</button>
+      <button onClick={categoriesHandler}>Categories</button>
+      <button>Search bar goes here, should be very big</button>
       <button onClick={logoutHandler}>Logout</button>
     </header>
   );
 };
 
-export default HeaderProfessor;
+export default HeaderStudent;

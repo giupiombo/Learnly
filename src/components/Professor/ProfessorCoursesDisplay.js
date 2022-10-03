@@ -2,7 +2,7 @@ import Footer from '../UI/Footer';
 import HeaderProfessor from '../UI/HeaderProfessor';
 import MyCourses from '../UI/MyCourses';
 
-const AddCourseDisplay = () => {
+const ProfessorCoursesDisplay = () => {
   return (
     <>
       <HeaderProfessor />
@@ -12,4 +12,4 @@ const AddCourseDisplay = () => {
   );
 };
 
-export default AddCourseDisplay;
+export default ProfessorCoursesDisplay;
