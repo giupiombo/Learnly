@@ -24,3 +24,13 @@
   color: #0090ac;
   font-weight: bold;
 }
+
+.item iframe {
+  width: 80%;
+  height: 15rem;
+}
+
+.noMargin {
+  margin-bottom: 0rem;
+  margin-top: 0rem;
+}

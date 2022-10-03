@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../../user/user-context';
 import Footer from '../UI/Footer';
 import Header from '../UI/Header';
 import Login from './Login';
@@ -9,7 +10,8 @@ const LoginDisplay = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
-  let loggedUser;
+  const { setUser } = useContext(UserContext);
+
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -53,7 +55,12 @@ const LoginDisplay = () => {
         } else {
           navigate('/professorCourses');
         }
-        loggedUser = users[user];
+        setUser(
+          users[user].name,
+          users[user].email,
+          users[user].password,
+          users[user].accountType
+        );
       }
     }
   };
