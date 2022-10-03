@@ -14,8 +14,10 @@ const CourseItem = (props) => {
         <p>{props.description}</p>
       </div>
       <div className={classes.row}>
-        <p className={classes.heading}>Price:&nbsp;</p>
-        <p>${props.price}</p>
+        <p className={`${classes.heading} ${classes.noMargin}`}>Price:&nbsp;</p>
+        <p className={classes.noMargin}>
+          ${parseFloat(props.price).toFixed(2)}
+        </p>
       </div>
       <div className={classes.row}>
         <p className={classes.heading}>Category:&nbsp;</p>

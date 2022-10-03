@@ -1,6 +1,6 @@
 import Footer from '../UI/Footer';
 import HeaderProfessor from '../UI/HeaderProfessor';
-import MyCourses from './MyCourses';
+import MyCourses from '../UI/MyCourses';
 
 const AddCourseDisplay = () => {
   return (
