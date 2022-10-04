@@ -10,8 +10,16 @@ const CourseItem = (props) => {
         allowFullScreen
       ></iframe>
       <div className={classes.row}>
-        <p className={classes.heading}>Description:&nbsp;</p>
-        <p>{props.description}</p>
+        <p className={`${classes.heading} ${classes.noMargin}`}>
+          Author:&nbsp;
+        </p>
+        <p className={classes.noMargin}>{props.author}</p>
+      </div>
+      <div className={classes.row}>
+        <p className={`${classes.heading} ${classes.noMargin}`}>
+          Description:&nbsp;
+        </p>
+        <p className={classes.noMargin}>{props.description}</p>
       </div>
       <div className={classes.row}>
         <p className={`${classes.heading} ${classes.noMargin}`}>Price:&nbsp;</p>

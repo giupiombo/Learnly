@@ -1,5 +1,5 @@
-import Footer from '../UI/Footer';
-import HeaderStudent from '../UI/HeaderStudent';
+import Footer from '../../Common/Footer';
+import HeaderStudent from '../HeaderStudent';
 import Categories from './Categories';
 
 const CategoriesDisplay = () => {

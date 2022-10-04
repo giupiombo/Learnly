@@ -1,6 +1,6 @@
-import Footer from '../UI/Footer';
-import HeaderStudent from '../UI/HeaderStudent';
-import MyCourses from '../UI/MyCourses';
+import Footer from '../Common/Footer';
+import HeaderStudent from './HeaderStudent';
+import MyCourses from '../Common/MyCourses';
 
 const StudentCoursesDisplay = () => {
   return (

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../context/user-context';
-import Footer from '../UI/Footer';
-import Header from '../UI/Header';
+import Footer from '../Common/Footer';
+import Header from '../Common/Header';
 import Login from './Login';
 
 const LoginDisplay = () => {

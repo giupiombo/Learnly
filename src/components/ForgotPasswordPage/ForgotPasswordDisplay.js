@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Footer from '../UI/Footer';
-import Header from '../UI/Header';
+import Footer from '../Common/Footer';
+import Header from '../Common/Header';
 import ForgotPassword from './ForgotPassword';
 
 const LoginDisplay = () => {

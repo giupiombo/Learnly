@@ -1,5 +1,5 @@
-import Footer from '../UI/Footer';
-import HeaderProfessor from '../UI/HeaderProfessor';
+import Footer from '../../Common/Footer';
+import HeaderProfessor from '../HeaderProfessor';
 import AddCourse from './AddCourse';
 
 const AddCourseDisplay = () => {
