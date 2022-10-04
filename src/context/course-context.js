@@ -5,38 +5,34 @@ const CourseContext = React.createContext();
 export const CourseContextProvider = (props) => {
   const [courses, setCourses] = useState([]);
 
-  const setCourse = (courses) => {
-    setCourses(courses);
-  };
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const response = await fetch(
+        'https://react-http-bb74b-default-rtdb.firebaseio.com/courses.json'
+      );
 
-  // useEffect(() => {
-  //   const fetchCourses = async () => {
-  //     const response = await fetch(
-  //       'https://react-http-bb74b-default-rtdb.firebaseio.com/courses.json'
-  //     );
+      const responseData = await response.json();
 
-  //     const responseData = await response.json();
+      const courses = [];
 
-  //     const courses = [];
+      for (const key in responseData) {
+        courses.push({
+          author: responseData[key].course.author,
+          title: responseData[key].course.title,
+          description: responseData[key].course.description,
+          category: responseData[key].course.category,
+          price: responseData[key].course.price,
+          video: responseData[key].course.video,
+        });
+      }
+      setCourses(courses);
+    };
 
-  //     for (const key in responseData) {
-  //       courses.push({
-  //         author: responseData[key].course.author,
-  //         title: responseData[key].course.title,
-  //         description: responseData[key].course.description,
-  //         category: responseData[key].course.category,
-  //         price: responseData[key].course.price,
-  //         video: responseData[key].course.video,
-  //       });
-  //     }
-  //     setCourses(courses);
-  //   };
-
-  //   fetchCourses();
-  // }, []);
+    fetchCourses();
+  }, []);
 
   return (
-    <CourseContext.Provider value={{ courses, setCourse }}>
+    <CourseContext.Provider value={{ courses }}>
       {props.children}
     </CourseContext.Provider>
   );

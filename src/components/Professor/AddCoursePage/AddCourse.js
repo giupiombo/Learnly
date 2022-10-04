@@ -1,13 +1,17 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useInput from '../../hooks/use-input';
-import Button from '../UI/Button';
-import Card from '../UI/Card';
+import UserContext from '../../../context/user-context';
+import useInput from '../../../hooks/use-input';
+import Button from '../../UI/Button';
+import Card from '../../UI/Card';
 import classes from './AddCourse.module.css';
 
 const isNotEmpty = (value) => value.trim() !== '';
 const isPrice = (value) => value > 0;
 
 const AddCourse = (props) => {
+  const { loggedUser } = useContext(UserContext);
+
   const {
     value: titleValue,
     isValid: titleIsValid,
@@ -78,7 +82,7 @@ const AddCourse = (props) => {
       category: categoryValue,
       price: priceValue,
       video: videoValue,
-      //author: loggedUser.name
+      author: loggedUser.name,
     });
 
     resetTitle();
