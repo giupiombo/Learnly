@@ -8,3 +8,9 @@
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.category h2 {
+  color: #0090ac;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 2rem;
+}
