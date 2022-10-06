@@ -5,8 +5,9 @@
   text-align: center;
   padding: 0.5rem;
   margin: 2rem;
-  width: 30%;
+  width: 30rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-block;
 }
 
 .item h2 {

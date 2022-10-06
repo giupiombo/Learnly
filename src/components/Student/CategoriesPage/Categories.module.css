@@ -14,3 +14,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin-left: 2rem;
 }
+
+.row {
+  /* display: inline-flex; */
+  /* flex-direction: row; */
+  overflow: auto;
+}
