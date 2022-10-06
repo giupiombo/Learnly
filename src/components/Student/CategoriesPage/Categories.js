@@ -5,53 +5,37 @@ import classes from './Categories.module.css';
 
 const Categories = () => {
   const { courses } = useContext(CourseContext);
-  let categories = [];
+  let categoriesMap = {};
 
-  for (const key in courses) {
-    if (!categories.includes(courses[key].category)) {
-      categories.push(courses[key].category);
+  for (const course of courses) {
+    if (!(course.category in categoriesMap)) {
+      categoriesMap[course.category] = [course];
+    } else {
+      categoriesMap[course.category].push(course);
     }
   }
 
-  let webCourses = [];
-  let mathCourses = [];
-
-  for (const key in courses) {
-    if (courses[key].category === 'web-development') {
-      webCourses.push(courses[key]);
-    } else if (courses[key].category === 'mathematics') {
-      mathCourses.push(courses[key]);
-    }
-  }
-
-  const webCourseList = webCourses.map((course) => (
-    <CourseItem
-      title={course.title}
-      description={course.description}
-      category={course.category}
-      price={course.price}
-      video={course.video}
-      author={course.author}
-    />
-  ));
-
-  const mathCourseList = mathCourses.map((course) => (
-    <CourseItem
-      title={course.title}
-      description={course.description}
-      category={course.category}
-      price={course.price}
-      video={course.video}
-      author={course.author}
-    />
-  ));
-
-  const categoryList = categories.map((category) => (
-    <>
-      <h2>{category}</h2>
-      {category === 'web-development' ? webCourseList : mathCourseList}
-    </>
-  ));
+  const categoryList = (
+    <div>
+      {Object.keys(categoriesMap).map((key) => (
+        <>
+          <h2>{key}</h2>
+          <>
+            {categoriesMap[key].map((course) => (
+              <CourseItem
+                title={course.title}
+                description={course.description}
+                category={course.category}
+                price={course.price}
+                video={course.video}
+                author={course.author}
+              />
+            ))}
+          </>
+        </>
+      ))}
+    </div>
+  );
 
   return (
     <div className={classes.category}>
