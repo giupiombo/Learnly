@@ -1,0 +1,11 @@
+.input {
+  align-content: center;
+  margin-top: 125px;
+  margin-bottom: 125px;
+}
+
+.input h2 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
