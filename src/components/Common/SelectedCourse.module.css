@@ -1,0 +1,33 @@
+.course {
+  height: 100rem;
+  width: 50rem;
+  text-align: center;
+  overflow: scroll;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.course h2 {
+  color: rgb(133, 71, 133);
+}
+
+.heading {
+  color: #0090ac;
+  font-weight: bold;
+}
+
+.course iframe {
+  width: 40rem;
+  height: 23rem;
+}
+
+.noMargin {
+  margin-bottom: 0rem;
+}

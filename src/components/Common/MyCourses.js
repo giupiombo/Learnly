@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import CourseContext from '../../context/course-context';
 import UserContext from '../../context/user-context';
 import CourseItem from '../UI/CourseItem';
@@ -36,11 +36,11 @@ const MyCourses = () => {
   const courseList = userCourses.map((course) => (
     <CourseItem
       title={course.title}
-      description={course.description}
-      category={course.category}
       price={course.price}
       video={course.video}
       author={course.author}
+      description={course.description}
+      category={course.category}
     />
   ));
 
