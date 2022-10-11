@@ -17,4 +17,4 @@ Developing a website for educational purposes that will host several courses fro
 ### Architectural Plan
 * **Front-end development:** JavaScript, React.js and CSS. 
 * **Back-end development:** Node.js.
-* **Database:** MySQL.
+* **Database:** Firebase.
