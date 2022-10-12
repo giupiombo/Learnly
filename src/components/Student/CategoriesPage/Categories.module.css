@@ -16,7 +16,8 @@
 }
 
 .row {
-  /* display: inline-flex; */
-  /* flex-direction: row; */
-  overflow: auto;
+  max-width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  overflow: scroll;
 }

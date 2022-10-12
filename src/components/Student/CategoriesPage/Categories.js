@@ -20,7 +20,7 @@ const Categories = () => {
       {Object.keys(categoriesMap).map((key) => (
         <>
           <h2>{key}</h2>
-          <>
+          <div className={classes.row}>
             {categoriesMap[key].map((course) => (
               <CourseItem
                 title={course.title}
@@ -31,7 +31,7 @@ const Categories = () => {
                 author={course.author}
               />
             ))}
-          </>
+          </div>
         </>
       ))}
     </div>
