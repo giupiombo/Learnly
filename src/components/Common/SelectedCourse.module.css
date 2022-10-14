@@ -2,7 +2,7 @@
   height: 100rem;
   width: 50rem;
   text-align: center;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 1rem;
   margin: 1rem;
 }
@@ -21,6 +21,10 @@
 .heading {
   color: #0090ac;
   font-weight: bold;
+}
+
+.course img {
+  width: 40rem;
 }
 
 .course iframe {

@@ -23,6 +23,7 @@ export const CourseContextProvider = (props) => {
           category: responseData[key].course.category,
           price: responseData[key].course.price,
           video: responseData[key].course.video,
+          image: responseData[key].course.image,
         });
       }
       setCourses(courses);

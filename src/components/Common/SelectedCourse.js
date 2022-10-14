@@ -32,10 +32,13 @@ const SelectedCourse = (props) => {
       )}
       <Card className={classes.course}>
         <h2>{selectedCourse.title}</h2>
-        <iframe
-          src={`https://www.youtube.com/embed/${selectedCourse.video}`}
-          allowFullScreen
-        ></iframe>
+        <img src={selectedCourse.image} alt="new" />
+        {loggedUser.accountType === 'professor' && (
+          <iframe
+            src={`https://www.youtube.com/embed/${selectedCourse.video}`}
+            allowFullScreen
+          ></iframe>
+        )}
         <div className={classes.row}>
           <p className={`${classes.heading} ${classes.noMargin}`}>
             Author:&nbsp;

@@ -19,6 +19,7 @@ const MyCourses = () => {
           category: courses[key].category,
           price: courses[key].price,
           video: courses[key].video,
+          image: courses[key].image,
         });
       }
     } else {
@@ -29,6 +30,7 @@ const MyCourses = () => {
         category: courses[key].category,
         price: courses[key].price,
         video: courses[key].video,
+        image: courses[key].image,
       });
     }
   }
@@ -41,6 +43,7 @@ const MyCourses = () => {
       author={course.author}
       description={course.description}
       category={course.category}
+      image={course.image}
     />
   ));
 

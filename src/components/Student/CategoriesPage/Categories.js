@@ -28,7 +28,9 @@ const Categories = () => {
                 category={course.category}
                 price={course.price}
                 video={course.video}
+                image={course.image}
                 author={course.author}
+                type={'categories'}
               />
             ))}
           </div>
