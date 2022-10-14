@@ -5,7 +5,15 @@ const SelectedCourseContext = React.createContext();
 export const SelectedCourseContextProvider = (props) => {
   const [selectedCourse, setSelectedCourse] = useState({});
 
-  const setCourse = (title, author, price, description, category, video) => {
+  const setCourse = (
+    title,
+    author,
+    price,
+    description,
+    category,
+    video,
+    image
+  ) => {
     setSelectedCourse({
       title: title,
       author: author,
@@ -13,6 +21,7 @@ export const SelectedCourseContextProvider = (props) => {
       description: description,
       category: category,
       video: video,
+      image: image,
     });
   };
 

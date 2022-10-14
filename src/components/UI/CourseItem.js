@@ -14,7 +14,8 @@ const CourseItem = (props) => {
       props.price,
       props.description,
       props.category,
-      props.video
+      props.video,
+      props.image
     );
     navigate('/selectedCourse');
   };
@@ -22,10 +23,15 @@ const CourseItem = (props) => {
   return (
     <div className={classes.item} onClick={clickHandler}>
       <h2>{props.title}</h2>
-      <iframe
-        src={`https://www.youtube.com/embed/${props.video}`}
-        allowFullScreen
-      ></iframe>
+
+      {props.type === 'categories' ? (
+        <img src={`${props.image}`} alt="new" />
+      ) : (
+        <iframe
+          src={`https://www.youtube.com/embed/${props.video}`}
+          allowFullScreen
+        ></iframe>
+      )}
       <div className={classes.row}>
         <p className={`${classes.heading} ${classes.noMargin}`}>
           Author:&nbsp;

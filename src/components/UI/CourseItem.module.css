@@ -31,6 +31,10 @@
   height: 15rem;
 }
 
+.item img {
+  width: 25rem;
+}
+
 .noMargin {
   margin-bottom: 0rem;
 }

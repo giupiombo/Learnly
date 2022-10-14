@@ -54,6 +54,14 @@ const AddCourse = (props) => {
     inputBlurHandler: videoBlurHandler,
     reset: resetVideo,
   } = useInput(isNotEmpty);
+  const {
+    value: imageValue,
+    isValid: imageIsValid,
+    hasError: imageHasError,
+    valueChangeHandler: imageChangeHandler,
+    inputBlurHandler: imageBlurHandler,
+    reset: resetImage,
+  } = useInput(isNotEmpty);
 
   let navigate = useNavigate();
 
@@ -64,7 +72,8 @@ const AddCourse = (props) => {
     descriptionIsValid &&
     categoryIsValid &&
     priceIsValid &&
-    videoIsValid
+    videoIsValid &&
+    imageIsValid
   ) {
     formIsValid = true;
   }
@@ -82,6 +91,7 @@ const AddCourse = (props) => {
       category: categoryValue,
       price: priceValue,
       video: videoValue,
+      image: imageValue,
       author: loggedUser.name,
     });
 
@@ -90,6 +100,7 @@ const AddCourse = (props) => {
     resetCategory();
     resetPrice();
     resetVideo();
+    resetImage();
   };
 
   const backHandler = () => {
@@ -100,6 +111,7 @@ const AddCourse = (props) => {
   const descriptionClasses = descriptionHasError ? classes.invalid : classes;
   const priceClasses = priceHasError ? classes.invalid : classes;
   const videoClasses = videoHasError ? classes.invalid : classes;
+  const imageClasses = imageHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -148,6 +160,15 @@ const AddCourse = (props) => {
           value={videoValue}
           onChange={videoChangeHandler}
           onBlur={videoBlurHandler}
+        />
+        <label htmlFor="image">Image</label>
+        <input
+          className={imageClasses}
+          id="image"
+          type="text"
+          value={imageValue}
+          onChange={imageChangeHandler}
+          onBlur={imageBlurHandler}
         />
         <Button
           disabled={!formIsValid}
