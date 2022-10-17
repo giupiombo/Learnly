@@ -9,6 +9,7 @@ import AddCourseDisplay from './components/Professor/AddCoursePage/AddCourseDisp
 import EditCourseDisplay from './components/Professor/EditCoursePage/EditCourseDisplay';
 import ProfessorCoursesDisplay from './components/Professor/ProfessorCoursesDisplay';
 import CategoriesDisplay from './components/Student/CategoriesPage/CategoriesDisplay';
+import Checkout from './components/Student/CheckoutPage/Checkout';
 import StudentCoursesDisplay from './components/Student/StudentCoursesDisplay.js';
 import { CourseContextProvider } from './context/course-context';
 import { SelectedCourseContextProvider } from './context/selected-course-context';
@@ -39,6 +40,7 @@ function App() {
                 element={<StudentCoursesDisplay />}
               />
               <Route path="/categories" element={<CategoriesDisplay />} />
+              <Route path="/checkout" element={<Checkout />} />
             </Routes>
           </SelectedCourseContextProvider>
         </CourseContextProvider>
