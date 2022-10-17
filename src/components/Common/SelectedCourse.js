@@ -19,7 +19,7 @@ const SelectedCourse = (props) => {
     if (loggedUser.accountType === 'professor') {
       navigate('/editCourse');
     } else {
-      navigate('/buyCourse');
+      navigate('/checkout');
     }
   };
 
