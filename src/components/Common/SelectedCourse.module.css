@@ -2,7 +2,7 @@
   height: 100rem;
   width: 50rem;
   text-align: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 1rem;
   margin: 1rem;
 }
