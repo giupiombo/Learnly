@@ -1,0 +1,34 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  background-color: #0090ac;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.header h2 {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header button {
+  border: none;
+  background-color: inherit;
+  padding: 10px 10px;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header button:hover {
+  color: #9fefff;
+}
+
+.header span {
+  margin-left: 50%;
+}

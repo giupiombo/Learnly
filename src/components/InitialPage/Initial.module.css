@@ -1,0 +1,46 @@
+.initial {
+  align-content: center;
+  margin-top: 125px;
+  margin-bottom: 125px;
+}
+
+.initial h1 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.initial h2 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.initial p {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.8rem;
+}
+
+.initial img {
+  width: 24rem;
+}
+
+.row {
+  max-width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+.card {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 2rem;
+  width: 25rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: inline-block;
+}
