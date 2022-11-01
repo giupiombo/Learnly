@@ -37,7 +37,7 @@ const ForgotPassword = (props) => {
   };
 
   const backHandler = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   const emailClasses = emailHasError ? classes.invalid : classes;

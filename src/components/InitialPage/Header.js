@@ -5,7 +5,7 @@ const Header = () => {
   let navigate = useNavigate();
 
   const loginHandler = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   const createAccountHandler = () => {

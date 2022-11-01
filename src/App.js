@@ -25,8 +25,8 @@ function App() {
         <CourseContextProvider>
           <SelectedCourseContextProvider>
             <Routes>
-              <Route path="/initial" element={<Initial />} />
-              <Route path="/" element={<LoginDisplay />} />
+              <Route path="/" element={<Initial />} />
+              <Route path="/login" element={<LoginDisplay />} />
               <Route path="/createAccount" element={<CreateAccountDisplay />} />
               <Route
                 path="/forgotPassword"
