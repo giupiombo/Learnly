@@ -1,5 +1,5 @@
 import Footer from '../Common/Footer';
-import Header from './Header';
+import Header from '../Common/Header';
 import classes from './Initial.module.css';
 
 const Initial = () => {
