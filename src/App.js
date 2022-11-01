@@ -6,6 +6,7 @@ import CreateAccountDisplay from './components/CreateAccountPage/CreateAccountDi
 import ForgotPasswordDisplay from './components/ForgotPasswordPage/ForgotPasswordDisplay';
 import ResetPasswordDisplay from './components/ForgotPasswordPage/ResetPasswordDisplay';
 import HomeDisplay from './components/HomePage/HomeDisplay';
+import Initial from './components/InitialPage/Initial';
 import LoginDisplay from './components/LoginPage/LoginDisplay';
 import AddCourseDisplay from './components/Professor/AddCoursePage/AddCourseDisplay';
 import EditCourseDisplay from './components/Professor/EditCoursePage/EditCourseDisplay';
@@ -24,6 +25,7 @@ function App() {
         <CourseContextProvider>
           <SelectedCourseContextProvider>
             <Routes>
+              <Route path="/initial" element={<Initial />} />
               <Route path="/" element={<LoginDisplay />} />
               <Route path="/createAccount" element={<CreateAccountDisplay />} />
               <Route
