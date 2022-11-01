@@ -5,6 +5,7 @@ import SelectedCourse from './components/Common/SelectedCourse';
 import CreateAccountDisplay from './components/CreateAccountPage/CreateAccountDisplay';
 import ForgotPasswordDisplay from './components/ForgotPasswordPage/ForgotPasswordDisplay';
 import ResetPasswordDisplay from './components/ForgotPasswordPage/ResetPasswordDisplay';
+import HomeDisplay from './components/HomePage/HomeDisplay';
 import LoginDisplay from './components/LoginPage/LoginDisplay';
 import AddCourseDisplay from './components/Professor/AddCoursePage/AddCourseDisplay';
 import EditCourseDisplay from './components/Professor/EditCoursePage/EditCourseDisplay';
@@ -30,6 +31,7 @@ function App() {
                 element={<ForgotPasswordDisplay />}
               />
               <Route path="/resetPassword" element={<ResetPasswordDisplay />} />
+              <Route path="/home" element={<HomeDisplay />} />
               <Route path="/addCourse" element={<AddCourseDisplay />} />
               <Route
                 path="/professorCourses"

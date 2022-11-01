@@ -11,9 +11,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-.header h2 {
+.title {
   color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
 }
 
 .header button {
@@ -26,7 +26,7 @@
 }
 
 .header button:hover {
-  color: white;
+  color: #9fefff;
 }
 
 .header span {
