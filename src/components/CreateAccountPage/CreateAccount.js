@@ -84,13 +84,13 @@ const CreateAccount = (props) => {
       return;
     }
 
-    props.onCreateAccount({
-      name: nameValue,
-      email: emailValue,
-      password: passwordValue,
-      passwordCheck: reEnterPasswordValue,
-      accountType: accountTypeValue,
-    });
+    props.onCreateAccount(
+      nameValue,
+      emailValue,
+      passwordValue,
+      reEnterPasswordValue,
+      accountTypeValue
+    );
 
     resetName();
     resetEmail();
