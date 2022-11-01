@@ -2,7 +2,6 @@ import Card from '../UI/Card';
 import Button from '../UI/Button';
 import classes from './CreateAccount.module.css';
 import { useNavigate } from 'react-router-dom';
-// import Axios from 'axios';
 import useInput from '../../hooks/use-input';
 
 const isNotEmpty = (value) => value.trim() !== '';
@@ -66,17 +65,6 @@ const CreateAccount = (props) => {
     formIsValid = true;
   }
 
-  // const addUser = () => {
-  //   Axios.post('http://localhost:3001/create', {
-  //     name: nameValue,
-  //     email: emailValue,
-  //     password: passwordValue,
-  //     renterPassword: reEnterPasswordValue,
-  //   }).then(() => {
-  //     console.log('Success');
-  //   });
-  // };
-
   const createAccountHandler = (event) => {
     event.preventDefault();
 
@@ -100,7 +88,7 @@ const CreateAccount = (props) => {
   };
 
   const backHandler = () => {
-    navigate('/');
+    navigate('/login');
   };
 
   const nameClasses = nameHasError ? classes.invalid : classes;
