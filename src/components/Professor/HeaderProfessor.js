@@ -8,6 +8,10 @@ const HeaderProfessor = () => {
 
   let navigate = useNavigate();
 
+  const homeHandler = () => {
+    navigate('/home');
+  };
+
   const myCoursesHandler = () => {
     navigate('/professorCourses');
   };
@@ -22,7 +26,9 @@ const HeaderProfessor = () => {
   };
   return (
     <header className={classes.header}>
-      <h2>Learnly</h2>
+      <button className={classes.title} onClick={homeHandler}>
+        Learnly
+      </button>
       <span></span>
       <button onClick={myCoursesHandler}>My Courses</button>
       <button onClick={addCoursesHandler}>Add Courses</button>

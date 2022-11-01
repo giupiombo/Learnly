@@ -8,6 +8,10 @@ const HeaderStudent = () => {
 
   let navigate = useNavigate();
 
+  const homeHandler = () => {
+    navigate('/home');
+  };
+
   const myCoursesHandler = () => {
     navigate('/StudentCourses');
   };
@@ -22,7 +26,9 @@ const HeaderStudent = () => {
   };
   return (
     <header className={classes.header}>
-      <h2>Learnly</h2>
+      <button className={classes.title} onClick={homeHandler}>
+        Learnly
+      </button>
       <button onClick={myCoursesHandler}>My Courses</button>
       <button onClick={categoriesHandler}>Categories</button>
       <button>Search bar goes here, should be very big</button>

@@ -50,11 +50,12 @@ const LoginDisplay = () => {
   const loginHandler = (email, password) => {
     for (const user in users) {
       if (users[user].email === email && users[user].password === password) {
-        if (users[user].accountType === 'student') {
-          navigate('/studentCourses');
-        } else {
-          navigate('/professorCourses');
-        }
+        // if (users[user].accountType === 'student') {
+        //   navigate('/studentCourses');
+        // } else {
+        //   navigate('/professorCourses');
+        // }
+        navigate('/home');
         setUser(
           users[user].name,
           users[user].email,
