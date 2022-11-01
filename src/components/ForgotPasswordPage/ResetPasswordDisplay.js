@@ -1,13 +1,10 @@
 import { useState } from 'react';
 import Footer from '../Common/Footer';
 import Header from '../Common/Header';
-import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
-const ForgotPasswordDisplay = () => {
-  const [usersList, setUsersList] = useState([]);
-  //userList will be used to validate the user later
-
-  const forgotPasswordHandler = (email) => {
+const ResetPasswordDisplay = () => {
+  const resetPasswordHandler = (password, reEnterPassword) => {
     // setUsersList((prevUsersList) => {
     //   return [
     //     ...prevUsersList,
@@ -22,10 +19,10 @@ const ForgotPasswordDisplay = () => {
   return (
     <div>
       <Header />
-      <ForgotPassword onForgotPassword={forgotPasswordHandler} />
+      <ResetPassword onResetPassword={resetPasswordHandler} />
       <Footer />
     </div>
   );
 };
 
-export default ForgotPasswordDisplay;
+export default ResetPasswordDisplay;
