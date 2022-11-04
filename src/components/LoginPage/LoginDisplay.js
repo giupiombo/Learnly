@@ -4,12 +4,25 @@ import UserContext from '../../context/user-context';
 import Footer from '../Common/Footer';
 import Header from '../Common/Header';
 import Login from './Login';
+import firebaseConfig from '../../firebase-config';
+import {
+  getFirestore,
+  addDoc,
+  serverTimestamp,
+  collection,
+} from 'firebase/firestore';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
+const db = getFirestore();
+const auth = getAuth();
+const colRef = collection(db, 'users');
 
 const LoginDisplay = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
+  //
   const { setUser } = useContext(UserContext);
 
   let navigate = useNavigate();
@@ -48,22 +61,41 @@ const LoginDisplay = () => {
   }, []);
 
   const loginHandler = (email, password) => {
-    for (const user in users) {
-      if (users[user].email === email && users[user].password === password) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((cred) => {
+        console.log('user logged in', cred.user);
         // if (users[user].accountType === 'student') {
-        //   navigate('/studentCourses');
+        // navigate('/studentCourses');
         // } else {
-        //   navigate('/professorCourses');
+        navigate('/professorCourses');
         // }
-        navigate('/home');
-        setUser(
-          users[user].name,
-          users[user].email,
-          users[user].password,
-          users[user].accountType
-        );
-      }
-    }
+        // setUser(
+        //       users[user].name,
+        //       users[user].email,
+        //       users[user].password,
+        //       users[user].accountType
+        //     );
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+    // for (const user in users) {
+    //   if (users[user].email === email && users[user].password === password) {
+    //     if (users[user].accountType === 'student') {
+    //       navigate('/studentCourses');
+    //     } else {
+    //       navigate('/professorCourses');
+    //     }
+    //     navigate('/home');
+    //     setUser(
+    //       users[user].name,
+    //       users[user].email,
+    //       users[user].password,
+    //       users[user].accountType
+    //     );
+    //   }
+    // }
   };
 
   return (
