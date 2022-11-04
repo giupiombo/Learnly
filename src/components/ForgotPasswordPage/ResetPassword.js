@@ -72,7 +72,7 @@ const ResetPassword = (props) => {
         <input
           className={reEnterPasswordClasses}
           id="reEnterPassword"
-          type="reEnterPassword"
+          type="password"
           value={reEnterPasswordValue}
           onChange={reEnterPasswordChangeHandler}
           onBlur={reEnterPasswordBlurHandler}
