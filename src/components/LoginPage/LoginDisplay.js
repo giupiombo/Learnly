@@ -22,7 +22,6 @@ const LoginDisplay = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
-  //
   const { setUser } = useContext(UserContext);
 
   let navigate = useNavigate();
@@ -65,9 +64,9 @@ const LoginDisplay = () => {
       .then((cred) => {
         console.log('user logged in', cred.user);
         // if (users[user].accountType === 'student') {
-        // navigate('/studentCourses');
+        navigate('/studentCourses');
         // } else {
-        navigate('/professorCourses');
+        // navigate('/professorCourses');
         // }
         // setUser(
         //       users[user].name,

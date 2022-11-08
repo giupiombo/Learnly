@@ -10,6 +10,7 @@ import {
   collection,
 } from 'firebase/firestore';
 import { getAuth, signOut } from 'firebase/auth';
+import SearchBar from '../UI/SearchBar';
 
 const auth = getAuth();
 
@@ -49,7 +50,8 @@ const HeaderStudent = () => {
       </button>
       <button onClick={myCoursesHandler}>My Courses</button>
       <button onClick={categoriesHandler}>Categories</button>
-      <button>Search bar goes here, should be very big</button>
+      {/* <button>Search bar goes here, should be very big</button> */}
+      <SearchBar />
       <button onClick={logoutHandler}>Logout</button>
     </header>
   );
