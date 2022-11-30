@@ -1,7 +1,7 @@
 .initial {
-  align-content: center;
   margin-top: 125px;
   margin-bottom: 125px;
+  text-align: center;
 }
 
 .initial h1 {

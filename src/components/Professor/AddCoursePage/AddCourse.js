@@ -87,15 +87,7 @@ const AddCourse = (props) => {
 
     const name = loggedUser.name;
 
-    props.onAddCourse(
-      // titleValue,
-      // descriptionValue,
-      // categoryValue,
-      // priceValue,
-      // videoValue,
-      // imageValue,
-      // name
-      {
+    props.onAddCourse({
       title: titleValue,
       description: descriptionValue,
       category: categoryValue,
@@ -103,8 +95,7 @@ const AddCourse = (props) => {
       video: videoValue,
       image: imageValue,
       author: name,
-      }
-    );
+    });
 
     resetTitle();
     resetDescription();
@@ -167,7 +158,7 @@ const AddCourse = (props) => {
         <input
           className={videoClasses}
           id="video"
-          type="text"
+          type="file"
           value={videoValue}
           onChange={videoChangeHandler}
           onBlur={videoBlurHandler}
@@ -176,7 +167,7 @@ const AddCourse = (props) => {
         <input
           className={imageClasses}
           id="image"
-          type="text"
+          type="file"
           value={imageValue}
           onChange={imageChangeHandler}
           onBlur={imageBlurHandler}

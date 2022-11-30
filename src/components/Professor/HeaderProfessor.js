@@ -19,7 +19,7 @@ const HeaderProfessor = () => {
   let navigate = useNavigate();
 
   const homeHandler = () => {
-    navigate('/home');
+    navigate('/professorCourses');
   };
 
   const myCoursesHandler = () => {

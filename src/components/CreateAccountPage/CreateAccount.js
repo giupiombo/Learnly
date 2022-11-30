@@ -51,6 +51,15 @@ const CreateAccount = (props) => {
     reset: resetAccountType,
   } = useInput(isNotEmpty);
 
+  const {
+    value: fileValue,
+    isValid: fileIsValid,
+    hasError: fileHasError,
+    valueChangeHandler: fileChangeHandler,
+    inputBlurHandler: fileBlurHandler,
+    reset: resetFile,
+  } = useInput(isNotEmpty);
+
   let navigate = useNavigate();
 
   let formIsValid = false;
@@ -77,7 +86,8 @@ const CreateAccount = (props) => {
       emailValue,
       passwordValue,
       reEnterPasswordValue,
-      accountTypeValue
+      accountTypeValue,
+      fileValue
     );
 
     resetName();
@@ -85,6 +95,7 @@ const CreateAccount = (props) => {
     resetPassword();
     resetReEnterPassword();
     resetAccountType();
+    resetFile();
   };
 
   const backHandler = () => {
@@ -97,6 +108,7 @@ const CreateAccount = (props) => {
   const reEnterPasswordClasses = reEnterPasswordHasError
     ? classes.invalid
     : classes;
+  const fileClasses = fileHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -138,13 +150,25 @@ const CreateAccount = (props) => {
           onChange={reEnterPasswordChangeHandler}
           onBlur={reEnterPasswordBlurHandler}
         />
-
         <label htmlFor="account-type">Account Type</label>
         <select value={accountTypeValue} onChange={accountTypeChangeHandler}>
           <option value="null"></option>
           <option value="student">Student</option>
           <option value="professor">Professor</option>
         </select>
+        {accountTypeValue === 'professor' && (
+          <>
+            <label htmlFor="resume">Attach your Resume</label>
+            <input
+              className={fileClasses}
+              id="file"
+              type="file"
+              value={fileValue}
+              onChange={fileChangeHandler}
+              onBlur={fileBlurHandler}
+            />
+          </>
+        )}
         <Button disabled={!formIsValid} type="submit" /*onClick={addUser}*/>
           Create Account
         </Button>
