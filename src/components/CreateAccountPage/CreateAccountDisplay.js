@@ -1,12 +1,11 @@
 import Footer from '../Common/Footer';
 import Header from '../Common/Header';
 import CreateAccount from './CreateAccount';
-import firebaseConfig from '../../firebase-config';
 import {
   getFirestore,
-  addDoc,
   serverTimestamp,
-  collection,
+  setDoc,
+  doc,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -16,7 +15,6 @@ import {
 
 const db = getFirestore();
 const auth = getAuth();
-const colRef = collection(db, 'users');
 
 const CreateAccountDisplay = () => {
   const createAccountHandler = async (
@@ -27,9 +25,12 @@ const CreateAccountDisplay = () => {
     accountTypeValue
   ) => {
     createUserWithEmailAndPassword(auth, emailValue, passwordValue)
-      .then((cred) => {
+      .then(async (cred) => {
         sendEmailVerification(cred.user);
-        addDoc(colRef, {
+        const user = cred.user;
+
+        const docRef = doc(db, "users", user.uid)
+        await setDoc(docRef, {
           email: emailValue,
           password: passwordValue,
           reEnterPassword: reEnterPasswordValue,
@@ -42,15 +43,6 @@ const CreateAccountDisplay = () => {
       .catch((err) => {
         console.log(err.message);
       });
-    // await fetch(
-    //   'https://react-http-bb74b-default-rtdb.firebaseio.com/accounts.json',
-    //   {
-    //     method: 'POST',
-    //     body: JSON.stringify({
-    //       user: accountData,
-    //     }),
-    //   }
-    // );
   };
 
   return (

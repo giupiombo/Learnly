@@ -10,6 +10,13 @@ import {
   addDoc,
   serverTimestamp,
   collection,
+  getDocs,
+  query,
+  where,
+  onSnapshot,
+  getDoc,
+  doc,
+  Firestore,
 } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -61,10 +68,24 @@ const LoginDisplay = () => {
 
   const loginHandler = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((cred) => {
+      .then(async (cred) => {
+        const user = cred.user;
         console.log('user logged in', cred.user);
+        console.log(user.uid);
+        
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        docSnap.data();
+        console.log(docSnap.data());
+        })
+          //if (accountType === 'student') {
+          //  navigate('/studentCourses');
+          //} else {
+          //  navigate('/professorCourses');
+          //  }
+
         // if (users[user].accountType === 'student') {
-        navigate('/studentCourses');
+        // navigate('/studentCourses');
         // } else {
         // navigate('/professorCourses');
         // }
@@ -74,10 +95,28 @@ const LoginDisplay = () => {
         //       users[user].password,
         //       users[user].accountType
         //     );
-      })
       .catch((err) => {
         console.log(err.message);
       });
+
+        //const docRef = doc(db, "users", email);
+        //const docSnap = await getDoc(docRef);
+
+        //if (docSnap.exists()) {
+        //  console.log("document data: ", docSnap.data());
+        //} else {
+        //  console.log("doesnt exist")
+        //}
+
+
+        //const q1 = query(colRef, where("email", "==", email))
+        //  const q2 = query(colRef, where("accountType", "==", accountType))
+        //  onSnapshot(q2, (snapshot) => {
+        //    const accountType = [];
+        //    snapshot.forEach((doc) => {
+        //      accountType.push( doc.data().accountType )
+        //    })
+    
 
     // for (const user in users) {
     //   if (users[user].email === email && users[user].password === password) {
