@@ -6,6 +6,7 @@ export const SelectedCourseContextProvider = (props) => {
   const [selectedCourse, setSelectedCourse] = useState({});
 
   const setCourse = (
+    id,
     title,
     author,
     price,
@@ -15,6 +16,7 @@ export const SelectedCourseContextProvider = (props) => {
     image
   ) => {
     setSelectedCourse({
+      id: id,
       title: title,
       author: author,
       price: price,

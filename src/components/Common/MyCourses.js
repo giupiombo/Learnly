@@ -13,6 +13,7 @@ const MyCourses = () => {
     if (loggedUser.accountType === 'professor') {
       if (courses[key].author === loggedUser.name) {
         userCourses.push({
+          id: courses[key].id,
           author: courses[key].author,
           title: courses[key].title,
           description: courses[key].description,
@@ -24,6 +25,7 @@ const MyCourses = () => {
       }
     } else {
       userCourses.push({
+        id: courses[key].id,
         author: courses[key].author,
         title: courses[key].title,
         description: courses[key].description,
@@ -37,6 +39,7 @@ const MyCourses = () => {
 
   const courseList = userCourses.map((course) => (
     <CourseItem
+      id={course.id}
       title={course.title}
       price={course.price}
       video={course.video}
@@ -51,6 +54,7 @@ const MyCourses = () => {
     <div className={classes.course}>
       <h1>My Courses</h1>
       {courseList}
+      {console.log(courses)}
     </div>
   );
 };

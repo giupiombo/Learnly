@@ -72,8 +72,8 @@ const LoginDisplay = () => {
         const user = cred.user;
         console.log('user logged in', cred.user);
         console.log(user.uid);
-        
-        const docRef = doc(db, "users", user.uid);
+
+        const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
         const account = docSnap.data();
         console.log(account.accountType);
@@ -84,63 +84,15 @@ const LoginDisplay = () => {
           account.accountType
         );
         if (account.accountType === 'student') {
-           navigate('/studentCourses');
+          navigate('/studentCourses');
         } else {
           navigate('/professorCourses');
-          
         }
-        })
-          //if (accountType === 'student') {
-          //  navigate('/studentCourses');
-          //} else {
-          //  navigate('/professorCourses');
-          //  }
+      })
 
-        // if (users[user].accountType === 'student') {
-        // navigate('/studentCourses');
-        // } else {
-        // navigate('/professorCourses');
-        // }
-        
       .catch((err) => {
         console.log(err.message);
       });
-
-        //const docRef = doc(db, "users", email);
-        //const docSnap = await getDoc(docRef);
-
-        //if (docSnap.exists()) {
-        //  console.log("document data: ", docSnap.data());
-        //} else {
-        //  console.log("doesnt exist")
-        //}
-
-
-        //const q1 = query(colRef, where("email", "==", email))
-        //  const q2 = query(colRef, where("accountType", "==", accountType))
-        //  onSnapshot(q2, (snapshot) => {
-        //    const accountType = [];
-        //    snapshot.forEach((doc) => {
-        //      accountType.push( doc.data().accountType )
-        //    })
-    
-
-    // for (const user in users) {
-    //   if (users[user].email === email && users[user].password === password) {
-    //     if (users[user].accountType === 'student') {
-    //       navigate('/studentCourses');
-    //     } else {
-    //       navigate('/professorCourses');
-    //     }
-    //     navigate('/home');
-    //     setUser(
-    //       users[user].name,
-    //       users[user].email,
-    //       users[user].password,
-    //       users[user].accountType
-    //     );
-    //   }
-    // }
   };
 
   return (

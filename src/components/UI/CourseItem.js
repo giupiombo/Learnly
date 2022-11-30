@@ -9,6 +9,7 @@ const CourseItem = (props) => {
 
   const clickHandler = () => {
     setCourse(
+      props.id,
       props.title,
       props.author,
       props.price,
