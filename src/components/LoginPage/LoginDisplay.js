@@ -75,8 +75,20 @@ const LoginDisplay = () => {
         
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
-        docSnap.data();
-        console.log(docSnap.data());
+        const account = docSnap.data();
+        console.log(account.accountType);
+        setUser(
+          account.name,
+          account.email,
+          account.password,
+          account.accountType
+        );
+        if (account.accountType === 'student') {
+           navigate('/studentCourses');
+        } else {
+          navigate('/professorCourses');
+          
+        }
         })
           //if (accountType === 'student') {
           //  navigate('/studentCourses');
@@ -89,12 +101,7 @@ const LoginDisplay = () => {
         // } else {
         // navigate('/professorCourses');
         // }
-        // setUser(
-        //       users[user].name,
-        //       users[user].email,
-        //       users[user].password,
-        //       users[user].accountType
-        //     );
+        
       .catch((err) => {
         console.log(err.message);
       });

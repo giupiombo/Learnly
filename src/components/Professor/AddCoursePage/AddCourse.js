@@ -85,15 +85,26 @@ const AddCourse = (props) => {
       return;
     }
 
-    props.onAddCourse({
+    const name = loggedUser.name;
+
+    props.onAddCourse(
+      // titleValue,
+      // descriptionValue,
+      // categoryValue,
+      // priceValue,
+      // videoValue,
+      // imageValue,
+      // name
+      {
       title: titleValue,
       description: descriptionValue,
       category: categoryValue,
       price: priceValue,
       video: videoValue,
       image: imageValue,
-      author: loggedUser.name,
-    });
+      author: name,
+      }
+    );
 
     resetTitle();
     resetDescription();
