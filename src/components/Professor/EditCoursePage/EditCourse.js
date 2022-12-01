@@ -10,8 +10,6 @@ const isNotEmpty = (value) => value.trim() !== '';
 const isPrice = (value) => value > 0;
 
 const EditCourse = (props) => {
-  const { selectedCourse } = useContext(SelectedCourseContext);
-
   const {
     value: titleValue,
     isValid: titleIsValid,

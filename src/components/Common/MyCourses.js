@@ -1,18 +1,23 @@
 import { useContext } from 'react';
 import CourseContext from '../../context/course-context';
 import UserContext from '../../context/user-context';
+import UserCourseContext from '../../context/user-courses-context';
 import CourseItem from '../UI/CourseItem';
 import classes from './MyCourses.module.css';
 
 const MyCourses = () => {
   const { loggedUser } = useContext(UserContext);
   const { courses } = useContext(CourseContext);
+  const { userCourses } = useContext(UserCourseContext);
 
-  let userCourses = [];
-  for (const key in courses) {
-    if (loggedUser.accountType === 'professor') {
+  console.log(userCourses);
+
+  let loggedUserCourses = [];
+
+  if (loggedUser.accountType === 'professor') {
+    for (const key in courses) {
       if (courses[key].author === loggedUser.name) {
-        userCourses.push({
+        loggedUserCourses.push({
           id: courses[key].id,
           author: courses[key].author,
           title: courses[key].title,
@@ -23,21 +28,29 @@ const MyCourses = () => {
           image: courses[key].image,
         });
       }
-    } else {
-      userCourses.push({
-        id: courses[key].id,
-        author: courses[key].author,
-        title: courses[key].title,
-        description: courses[key].description,
-        category: courses[key].category,
-        price: courses[key].price,
-        video: courses[key].video,
-        image: courses[key].image,
-      });
+    }
+  } else {
+    for (const item in userCourses) {
+      if (userCourses[item].student === loggedUser.name) {
+        for (const key in courses) {
+          if (courses[key].id === userCourses[item].course) {
+            loggedUserCourses.push({
+              id: courses[key].id,
+              author: courses[key].author,
+              title: courses[key].title,
+              description: courses[key].description,
+              category: courses[key].category,
+              price: courses[key].price,
+              video: courses[key].video,
+              image: courses[key].image,
+            });
+          }
+        }
+      }
     }
   }
 
-  const courseList = userCourses.map((course) => (
+  const courseList = loggedUserCourses.map((course) => (
     <CourseItem
       id={course.id}
       title={course.title}
@@ -54,7 +67,6 @@ const MyCourses = () => {
     <div className={classes.course}>
       <h1>My Courses</h1>
       {courseList}
-      {console.log(courses)}
     </div>
   );
 };

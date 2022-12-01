@@ -12,43 +12,52 @@ import AddCourseDisplay from './components/Professor/AddCoursePage/AddCourseDisp
 import EditCourseDisplay from './components/Professor/EditCoursePage/EditCourseDisplay';
 import ProfessorCoursesDisplay from './components/Professor/ProfessorCoursesDisplay';
 import CategoriesDisplay from './components/Student/CategoriesPage/CategoriesDisplay';
-import Checkout from './components/Student/CheckoutPage/Checkout';
+import CheckoutDisplay from './components/Student/CheckoutPage/CheckoutDisplay';
 import StudentCoursesDisplay from './components/Student/StudentCoursesDisplay.js';
 import { CourseContextProvider } from './context/course-context';
 import { SelectedCourseContextProvider } from './context/selected-course-context';
 import { UserContextProvider } from './context/user-context';
+import { UserCourseContextProvider } from './context/user-courses-context';
 
 function App() {
   return (
     <div>
       <UserContextProvider>
         <CourseContextProvider>
-          <SelectedCourseContextProvider>
-            <Routes>
-              <Route path="/" element={<Initial />} />
-              <Route path="/login" element={<LoginDisplay />} />
-              <Route path="/createAccount" element={<CreateAccountDisplay />} />
-              <Route
-                path="/forgotPassword"
-                element={<ForgotPasswordDisplay />}
-              />
-              <Route path="/resetPassword" element={<ResetPasswordDisplay />} />
-              <Route path="/home" element={<HomeDisplay />} />
-              <Route path="/addCourse" element={<AddCourseDisplay />} />
-              <Route
-                path="/professorCourses"
-                element={<ProfessorCoursesDisplay />}
-              />
-              <Route path="/selectedCourse" element={<SelectedCourse />} />
-              <Route path="/editCourse" element={<EditCourseDisplay />} />
-              <Route
-                path="/studentCourses"
-                element={<StudentCoursesDisplay />}
-              />
-              <Route path="/categories" element={<CategoriesDisplay />} />
-              <Route path="/checkout" element={<Checkout />} />
-            </Routes>
-          </SelectedCourseContextProvider>
+          <UserCourseContextProvider>
+            <SelectedCourseContextProvider>
+              <Routes>
+                <Route path="/" element={<Initial />} />
+                <Route path="/login" element={<LoginDisplay />} />
+                <Route
+                  path="/createAccount"
+                  element={<CreateAccountDisplay />}
+                />
+                <Route
+                  path="/forgotPassword"
+                  element={<ForgotPasswordDisplay />}
+                />
+                <Route
+                  path="/resetPassword"
+                  element={<ResetPasswordDisplay />}
+                />
+                <Route path="/home" element={<HomeDisplay />} />
+                <Route path="/addCourse" element={<AddCourseDisplay />} />
+                <Route
+                  path="/professorCourses"
+                  element={<ProfessorCoursesDisplay />}
+                />
+                <Route path="/selectedCourse" element={<SelectedCourse />} />
+                <Route path="/editCourse" element={<EditCourseDisplay />} />
+                <Route
+                  path="/studentCourses"
+                  element={<StudentCoursesDisplay />}
+                />
+                <Route path="/categories" element={<CategoriesDisplay />} />
+                <Route path="/checkout" element={<CheckoutDisplay />} />
+              </Routes>
+            </SelectedCourseContextProvider>
+          </UserCourseContextProvider>
         </CourseContextProvider>
       </UserContextProvider>
     </div>

@@ -23,6 +23,7 @@ const Categories = () => {
           <div className={classes.row}>
             {categoriesMap[key].map((course) => (
               <CourseItem
+                id={course.id}
                 title={course.title}
                 description={course.description}
                 category={course.category}

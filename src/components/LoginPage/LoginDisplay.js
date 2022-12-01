@@ -5,19 +5,7 @@ import Footer from '../Common/Footer';
 import Header from '../Common/Header';
 import Login from './Login';
 import firebaseConfig from '../../firebase-config';
-import {
-  getFirestore,
-  addDoc,
-  serverTimestamp,
-  collection,
-  getDocs,
-  query,
-  where,
-  onSnapshot,
-  getDoc,
-  doc,
-  Firestore,
-} from 'firebase/firestore';
+import { getFirestore, collection, getDoc, doc } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const db = getFirestore();

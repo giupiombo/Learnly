@@ -4,13 +4,7 @@ import EditCourse from './EditCourse';
 import { useContext } from 'react';
 import SelectedCourseContext from '../../../context/selected-course-context';
 
-import {
-  getFirestore,
-  updateDoc,
-  setDoc,
-  doc,
-  collection,
-} from 'firebase/firestore';
+import { getFirestore, updateDoc, doc } from 'firebase/firestore';
 
 const db = getFirestore();
 
@@ -37,7 +31,6 @@ const EditCourseDisplay = () => {
       video: videoValue,
       image: imageValue,
     });
-    // console.log(courseData);
     console.log('course added');
   };
 
