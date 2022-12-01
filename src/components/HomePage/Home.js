@@ -44,6 +44,31 @@ const Home = () => {
     />
   ));
 
+  const courseIds = [];
+  for (const userCourse of loggedUserCourses) {
+    courseIds.push(userCourse.id);
+  }
+
+  const topPick = [];
+  for (const course of courses) {
+    if (
+      course.category === loggedUserCourses[0].category &&
+      !courseIds.includes(course.id)
+    ) {
+      topPick.push({
+        id: course.id,
+        author: course.author,
+        title: course.title,
+        description: course.description,
+        category: course.category,
+        price: course.price,
+        video: course.video,
+        image: course.image,
+      });
+    }
+  }
+
+  console.log(topPick);
   return (
     <div className={classes.home}>
       <h1>Home</h1>
@@ -51,13 +76,13 @@ const Home = () => {
       {courseList}
       <h2>Top pick for you</h2>
       <CourseItem
-        title={courses[1].title}
-        description={courses[1].description}
-        category={courses[1].category}
-        price={courses[1].price}
-        video={courses[1].video}
-        image={courses[1].image}
-        author={courses[1].author}
+        title={topPick[0].title}
+        description={topPick[0].description}
+        category={topPick[0].category}
+        price={topPick[0].price}
+        video={topPick[0].video}
+        image={topPick[0].image}
+        author={topPick[0].author}
         type={'categories'}
       />
     </div>
