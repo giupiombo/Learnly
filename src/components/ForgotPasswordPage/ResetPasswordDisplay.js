@@ -4,17 +4,7 @@ import Header from '../Common/Header';
 import ResetPassword from './ResetPassword';
 
 const ResetPasswordDisplay = () => {
-  const resetPasswordHandler = (password, reEnterPassword) => {
-    // setUsersList((prevUsersList) => {
-    //   return [
-    //     ...prevUsersList,
-    //     {
-    //       email: email,
-    //       id: Math.random().toString(),
-    //     },
-    //   ];
-    // });
-  };
+  const resetPasswordHandler = (password, reEnterPassword) => {};
 
   return (
     <div>

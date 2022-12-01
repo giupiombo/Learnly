@@ -24,7 +24,6 @@ const CourseItem = (props) => {
   return (
     <div className={classes.item} onClick={clickHandler}>
       <h2>{props.title}</h2>
-
       {props.type === 'categories' ? (
         <img src={`${props.image}`} alt="new" />
       ) : (
