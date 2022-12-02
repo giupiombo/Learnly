@@ -12,6 +12,9 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from 'firebase/auth';
+import { storage } from '../../firebase-config';
+import { ref, uploadBytes } from 'firebase/storage';
+import { v4 } from 'uuid';
 
 const db = getFirestore();
 const auth = getAuth();
@@ -22,7 +25,8 @@ const CreateAccountDisplay = () => {
     emailValue,
     passwordValue,
     reEnterPasswordValue,
-    accountTypeValue
+    accountTypeValue,
+    fileValue
   ) => {
     createUserWithEmailAndPassword(auth, emailValue, passwordValue)
       .then(async (cred) => {
@@ -38,6 +42,10 @@ const CreateAccountDisplay = () => {
           accountType: accountTypeValue,
           createdAt: serverTimestamp(),
         });
+
+        const resumeRef = ref(storage, `resumes/${fileValue.name + v4()}`)
+        await uploadBytes(resumeRef, fileValue)
+            console.log("image uploaded")
         console.log('user created', cred.user);
       })
       .catch((err) => {
