@@ -81,7 +81,7 @@ const Checkout = (props) => {
     }
 
     props.onPurchaseCourse({
-      student: loggedUser.name,
+      student: loggedUser.id,
       course: selectedCourse.id,
     });
 

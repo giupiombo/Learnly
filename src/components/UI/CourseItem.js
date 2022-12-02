@@ -1,11 +1,22 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SelectedCourseContext from '../../context/selected-course-context';
+import UserCourseContext from '../../context/user-courses-context';
 import classes from './CourseItem.module.css';
 
 const CourseItem = (props) => {
   const { setCourse } = useContext(SelectedCourseContext);
+  const { userCourses } = useContext(UserCourseContext);
+
   let navigate = useNavigate();
+
+  const courseIds = [];
+  for (const userCourse of userCourses) {
+    courseIds.push(userCourse.course);
+  }
+
+  console.log(userCourses);
+  console.log(courseIds);
 
   const clickHandler = () => {
     setCourse(
@@ -24,7 +35,7 @@ const CourseItem = (props) => {
   return (
     <div className={classes.item} onClick={clickHandler}>
       <h2>{props.title}</h2>
-      {props.type === 'categories' ? (
+      {props.type === 'categories' && !courseIds.includes(props.id) ? (
         <img src={`${props.image}`} alt="new" />
       ) : (
         <iframe

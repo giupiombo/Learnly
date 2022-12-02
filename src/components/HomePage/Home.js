@@ -13,7 +13,7 @@ const Home = () => {
   let loggedUserCourses = [];
 
   for (const item in userCourses) {
-    if (userCourses[item].student === loggedUser.name) {
+    if (userCourses[item].student === loggedUser.id) {
       for (const key in courses) {
         if (courses[key].id === userCourses[item].course) {
           loggedUserCourses.push({
@@ -68,7 +68,6 @@ const Home = () => {
     }
   }
 
-  console.log(topPick);
   return (
     <div className={classes.home}>
       <h1>Home</h1>
