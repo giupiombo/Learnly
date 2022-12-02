@@ -1,21 +1,53 @@
 import React, { useState } from 'react';
 import classes from './SearchBar.module.css';
+import { useContext } from 'react';
+import CourseContext from '../../context/course-context';
+import { useNavigate } from 'react-router-dom';
+import SearchCourseContext from '../../context/search-course-context';
 
 const SearchBar = () => {
+  const { courses } = useContext(CourseContext);
   const [searchInput, setSearchInput] = useState('');
+  const { setSearchedCourses } = useContext(SearchCourseContext);
+
+  let navigate = useNavigate();
+
+  const titles = [];
+  for (const course of courses) {
+    titles.push(course.title);
+  }
 
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
 
-  // if (searchInput.length > 0) {
-  //   countries.filter((country) => {
-  //     return country.name.match(searchInput);
-  //   });
-  // }
+  let filterTitles;
+  if (searchInput.length > 0) {
+    filterTitles = titles.filter((title) => {
+      return title.match(searchInput);
+    });
+  }
 
-  const searchHandler = () => {};
+  const searchHandler = (e) => {
+    e.preventDefault();
+    console.log('submit');
+    console.log(searchInput);
+    console.log(filterTitles);
+
+    const searchCourses = [];
+    for (const course of courses) {
+      if (filterTitles.includes(course.title)) {
+        searchCourses.push(course);
+      }
+    }
+
+    setSearchedCourses(searchCourses);
+
+    console.log(searchCourses);
+
+    navigate('/search');
+  };
 
   return (
     <div className={classes.search}>
