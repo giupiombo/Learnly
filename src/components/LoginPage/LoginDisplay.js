@@ -17,39 +17,6 @@ const LoginDisplay = () => {
 
   let navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchUsers = async () => {
-  //     const response = await fetch(
-  //       'https://react-http-bb74b-default-rtdb.firebaseio.com/accounts.json'
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error('Invalid Account!');
-  //     }
-
-  //     const responseData = await response.json();
-
-  //     const accounts = [];
-
-  //     for (const key in responseData) {
-  //       accounts.push({
-  //         name: responseData[key].user.name,
-  //         email: responseData[key].user.email,
-  //         password: responseData[key].user.password,
-  //         accountType: responseData[key].user.accountType,
-  //       });
-  //     }
-
-  //     setUsers(accounts);
-  //     setIsLoading(false);
-  //   };
-
-  //   fetchUsers().catch((error) => {
-  //     setIsLoading(false);
-  //     setHttpError(error.message);
-  //   });
-  // }, []);
-
   const loginHandler = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(async (cred) => {
@@ -60,8 +27,10 @@ const LoginDisplay = () => {
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
         const account = docSnap.data();
+        const accountId = user.uid;
 
         setUser(
+          accountId,
           account.name,
           account.email,
           account.password,

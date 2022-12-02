@@ -5,8 +5,9 @@ const UserContext = React.createContext();
 export const UserContextProvider = (props) => {
   const [loggedUser, setLoggedUser] = useState({});
 
-  const setUser = (name, email, password, accountType) => {
+  const setUser = (id, name, email, password, accountType) => {
     setLoggedUser({
+      id: id,
       name: name,
       email: email,
       password: password,

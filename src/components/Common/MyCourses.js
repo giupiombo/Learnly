@@ -31,7 +31,7 @@ const MyCourses = () => {
     }
   } else {
     for (const item in userCourses) {
-      if (userCourses[item].student === loggedUser.name) {
+      if (userCourses[item].student === loggedUser.id) {
         for (const key in courses) {
           if (courses[key].id === userCourses[item].course) {
             loggedUserCourses.push({

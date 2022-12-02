@@ -9,8 +9,6 @@ const CheckoutDisplay = () => {
   const purchaseCourseHandler = async (purchase) => {
     const coursesRef = doc(collection(db, 'userCourse'));
     await setDoc(coursesRef, purchase);
-
-    console.log(purchase);
   };
 
   return (

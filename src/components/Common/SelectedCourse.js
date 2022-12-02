@@ -8,12 +8,21 @@ import classes from './SelectedCourse.module.css';
 import Button from '../UI/Button';
 import SelectedCourseContext from '../../context/selected-course-context';
 import { useNavigate } from 'react-router-dom';
+import UserCourseContext from '../../context/user-courses-context';
 
 const SelectedCourse = (props) => {
   const { loggedUser } = useContext(UserContext);
   const { selectedCourse } = useContext(SelectedCourseContext);
+  const { userCourses } = useContext(UserCourseContext);
 
   let navigate = useNavigate();
+
+  const courseIds = [];
+  for (const userCourse of userCourses) {
+    if (loggedUser.id === userCourse.student) {
+      courseIds.push(userCourse.course);
+    }
+  }
 
   const buttonHandler = () => {
     if (loggedUser.accountType === 'professor') {
@@ -39,6 +48,13 @@ const SelectedCourse = (props) => {
             allowFullScreen
           ></iframe>
         )}
+        {loggedUser.accountType === 'student' &&
+          courseIds.includes(selectedCourse.id) && (
+            <iframe
+              src={`https://www.youtube.com/embed/${selectedCourse.video}`}
+              allowFullScreen
+            ></iframe>
+          )}
         <div className={classes.row}>
           <p className={`${classes.heading} ${classes.noMargin}`}>
             Author:&nbsp;
@@ -55,9 +71,11 @@ const SelectedCourse = (props) => {
           <p className={classes.heading}>Price:&nbsp;</p>
           <p>${parseFloat(selectedCourse.price).toFixed(2)}</p>
         </div>{' '}
-        <Button onClick={buttonHandler}>
-          {loggedUser.accountType === 'professor' ? `Edit` : `Buy`}
-        </Button>
+        {!courseIds.includes(selectedCourse.id) && (
+          <Button onClick={buttonHandler}>
+            {loggedUser.accountType === 'professor' ? `Edit` : `Buy`}
+          </Button>
+        )}
       </Card>
       <Footer />
     </>
