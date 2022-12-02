@@ -1,0 +1,23 @@
+.search {
+  align-content: center;
+  margin-top: 125px;
+  margin-bottom: 125px;
+}
+.search h1 {
+  color: #0090ac;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.search h2 {
+  color: #0090ac;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 2rem;
+}
+
+.row {
+  max-width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
