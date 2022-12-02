@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import Footer from '../Common/Footer';
@@ -13,46 +13,42 @@ const auth = getAuth();
 const colRef = collection(db, 'users');
 
 const LoginDisplay = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
-
   const { setUser } = useContext(UserContext);
 
   let navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch(
-        'https://react-http-bb74b-default-rtdb.firebaseio.com/accounts.json'
-      );
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     const response = await fetch(
+  //       'https://react-http-bb74b-default-rtdb.firebaseio.com/accounts.json'
+  //     );
 
-      if (!response.ok) {
-        throw new Error('Invalid Account!');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Invalid Account!');
+  //     }
 
-      const responseData = await response.json();
+  //     const responseData = await response.json();
 
-      const accounts = [];
+  //     const accounts = [];
 
-      for (const key in responseData) {
-        accounts.push({
-          name: responseData[key].user.name,
-          email: responseData[key].user.email,
-          password: responseData[key].user.password,
-          accountType: responseData[key].user.accountType,
-        });
-      }
+  //     for (const key in responseData) {
+  //       accounts.push({
+  //         name: responseData[key].user.name,
+  //         email: responseData[key].user.email,
+  //         password: responseData[key].user.password,
+  //         accountType: responseData[key].user.accountType,
+  //       });
+  //     }
 
-      setUsers(accounts);
-      setIsLoading(false);
-    };
+  //     setUsers(accounts);
+  //     setIsLoading(false);
+  //   };
 
-    fetchUsers().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
-  }, []);
+  //   fetchUsers().catch((error) => {
+  //     setIsLoading(false);
+  //     setHttpError(error.message);
+  //   });
+  // }, []);
 
   const loginHandler = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -64,17 +60,20 @@ const LoginDisplay = () => {
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
         const account = docSnap.data();
-        console.log(account.accountType);
+
         setUser(
           account.name,
           account.email,
           account.password,
           account.accountType
         );
-        if (account.accountType === 'student') {
-          navigate('/studentCourses');
-        } else {
-          navigate('/professorCourses');
+
+        if (account.userValidation) {
+          if (account.accountType === 'student') {
+            navigate('/studentCourses');
+          } else {
+            navigate('/professorCourses');
+          }
         }
       })
 

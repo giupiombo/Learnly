@@ -1,27 +1,20 @@
 import Footer from '../Common/Footer';
 import Header from '../Common/Header';
 import CreateAccount from './CreateAccount';
-import {
-  getFirestore,
-  serverTimestamp,
-  setDoc,
-  doc,
-  snapshotEqual,
-} from 'firebase/firestore';
+import { getFirestore, serverTimestamp, setDoc, doc } from 'firebase/firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from 'firebase/auth';
 import { storage } from '../../firebase-config';
-import { ref, uploadBytes, getMetadata } from 'firebase/storage';
-import { v4 } from 'uuid';
+import { ref, uploadBytes } from 'firebase/storage';
 
 const db = getFirestore();
 const auth = getAuth();
 const metadata = {
-  contentType: 'resumes/pdf'
-}
+  contentType: 'resumes/pdf',
+};
 
 const CreateAccountDisplay = () => {
   const createAccountHandler = async (
@@ -37,7 +30,9 @@ const CreateAccountDisplay = () => {
         sendEmailVerification(cred.user);
         const user = cred.user;
 
-        const docRef = doc(db, "users", user.uid)
+        const userValidation = accountTypeValue === 'student' ? true : false;
+
+        const docRef = doc(db, 'users', user.uid);
         await setDoc(docRef, {
           email: emailValue,
           password: passwordValue,
@@ -45,11 +40,12 @@ const CreateAccountDisplay = () => {
           name: nameValue,
           accountType: accountTypeValue,
           createdAt: serverTimestamp(),
+          userValidation: userValidation,
         });
 
-        const resumeRef = ref(storage, `resumes/${fileValue.name}`)
-        uploadBytes(resumeRef, fileValue, metadata)
-          console.log("image uploaded")
+        const resumeRef = ref(storage, `resumes/${fileValue.name}`);
+        uploadBytes(resumeRef, fileValue, metadata);
+        console.log('image uploaded');
 
         console.log('user created', cred.user);
       })

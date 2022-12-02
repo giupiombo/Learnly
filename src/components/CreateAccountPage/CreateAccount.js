@@ -54,15 +54,6 @@ const CreateAccount = (props) => {
     reset: resetAccountType,
   } = useInput(isNotEmpty);
 
-  // const {
-  //   value: fileValue,
-  //   isValid: fileIsValid,
-  //   hasError: fileHasError,
-  //   valueChangeHandler: fileChangeHandler,
-  //   inputBlurHandler: fileBlurHandler,
-  //   reset: resetFile,
-  // } = useInput(isNotEmpty);
-
   let navigate = useNavigate();
 
   let formIsValid = false;
@@ -91,7 +82,6 @@ const CreateAccount = (props) => {
       reEnterPasswordValue,
       accountTypeValue,
       file
-      // fileValue
     );
 
     resetName();
@@ -99,7 +89,6 @@ const CreateAccount = (props) => {
     resetPassword();
     resetReEnterPassword();
     resetAccountType();
-    // resetFile();
   };
 
   const backHandler = () => {
@@ -108,7 +97,7 @@ const CreateAccount = (props) => {
 
   const fileChangeHandler = (e) => {
     setFile(e.target.files[0]);
-  }
+  };
 
   const nameClasses = nameHasError ? classes.invalid : classes;
   const emailClasses = emailHasError ? classes.invalid : classes;
@@ -116,7 +105,6 @@ const CreateAccount = (props) => {
   const reEnterPasswordClasses = reEnterPasswordHasError
     ? classes.invalid
     : classes;
-  // const fileClasses = fileHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -167,17 +155,10 @@ const CreateAccount = (props) => {
         {accountTypeValue === 'professor' && (
           <>
             <label htmlFor="resume">Attach your Resume</label>
-            <input
-              // className={fileClasses}
-              id="file"
-              type="file"
-              // value={fileValue}
-              onChange={fileChangeHandler}
-              // onBlur={fileBlurHandler}
-            />
+            <input id="file" type="file" onChange={fileChangeHandler} />
           </>
         )}
-        <Button disabled={!formIsValid} type="submit" /*onClick={addUser}*/>
+        <Button disabled={!formIsValid} type="submit">
           Create Account
         </Button>
         <button type="button" className={classes.text} onClick={backHandler}>
