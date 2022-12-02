@@ -12,6 +12,13 @@ import { ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 
 const db = getFirestore();
+const metadata1 = {
+  contentType1: 'thumbnails/jpeg'
+}
+
+const metadata2 = {
+  contentType2: 'courseVideos/mov'
+}
 
 const AddCourseDisplay = () => {
   const addCourseHandler = async (
@@ -31,12 +38,12 @@ const AddCourseDisplay = () => {
         });
         console.log('course added');
       
-      const thumbnailRef = ref(storage, `thumbnails/${imageValue.name + v4()}`)
-        await uploadBytes(thumbnailRef, imageValue)
+      const thumbnailRef = ref(storage, `thumbnails/${imageValue.name}`)
+        uploadBytes(thumbnailRef, imageValue, metadata1)
           console.log("image uploaded")
 
-      const videoRef = ref(storage, `courseVideos/${videoValue.name + v4()}`)
-        await uploadBytes(videoRef, videoValue)
+      const videoRef = ref(storage, `courseVideos/${videoValue.name}`)
+        uploadBytes(videoRef, videoValue, metadata2)
           console.log("video uploaded")
   };
 

@@ -3,11 +3,14 @@ import Button from '../UI/Button';
 import classes from './CreateAccount.module.css';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../hooks/use-input';
+import { useState } from 'react';
 
 const isNotEmpty = (value) => value.trim() !== '';
 const isEmail = (value) => value.includes('@');
 
 const CreateAccount = (props) => {
+  const [file, setFile] = useState('');
+
   const {
     value: nameValue,
     isValid: nameIsValid,
@@ -51,14 +54,14 @@ const CreateAccount = (props) => {
     reset: resetAccountType,
   } = useInput(isNotEmpty);
 
-  const {
-    value: fileValue,
-    isValid: fileIsValid,
-    hasError: fileHasError,
-    valueChangeHandler: fileChangeHandler,
-    inputBlurHandler: fileBlurHandler,
-    reset: resetFile,
-  } = useInput(isNotEmpty);
+  // const {
+  //   value: fileValue,
+  //   isValid: fileIsValid,
+  //   hasError: fileHasError,
+  //   valueChangeHandler: fileChangeHandler,
+  //   inputBlurHandler: fileBlurHandler,
+  //   reset: resetFile,
+  // } = useInput(isNotEmpty);
 
   let navigate = useNavigate();
 
@@ -87,7 +90,8 @@ const CreateAccount = (props) => {
       passwordValue,
       reEnterPasswordValue,
       accountTypeValue,
-      fileValue
+      file
+      // fileValue
     );
 
     resetName();
@@ -95,12 +99,16 @@ const CreateAccount = (props) => {
     resetPassword();
     resetReEnterPassword();
     resetAccountType();
-    resetFile();
+    // resetFile();
   };
 
   const backHandler = () => {
     navigate('/login');
   };
+
+  const fileChangeHandler = (e) => {
+    setFile(e.target.files[0]);
+  }
 
   const nameClasses = nameHasError ? classes.invalid : classes;
   const emailClasses = emailHasError ? classes.invalid : classes;
@@ -108,7 +116,7 @@ const CreateAccount = (props) => {
   const reEnterPasswordClasses = reEnterPasswordHasError
     ? classes.invalid
     : classes;
-  const fileClasses = fileHasError ? classes.invalid : classes;
+  // const fileClasses = fileHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -160,12 +168,12 @@ const CreateAccount = (props) => {
           <>
             <label htmlFor="resume">Attach your Resume</label>
             <input
-              className={fileClasses}
+              // className={fileClasses}
               id="file"
               type="file"
-              value={fileValue}
+              // value={fileValue}
               onChange={fileChangeHandler}
-              onBlur={fileBlurHandler}
+              // onBlur={fileBlurHandler}
             />
           </>
         )}

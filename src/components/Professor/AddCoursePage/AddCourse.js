@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../../context/user-context';
 import useInput from '../../../hooks/use-input';
@@ -10,6 +10,9 @@ const isNotEmpty = (value) => value.trim() !== '';
 const isPrice = (value) => value > 0;
 
 const AddCourse = (props) => {
+  const [video, setVideo] = useState('');
+  const [image, setImage] = useState('');
+
   const { loggedUser } = useContext(UserContext);
 
   const {
@@ -46,22 +49,22 @@ const AddCourse = (props) => {
     reset: resetPrice,
   } = useInput(isPrice);
 
-  const {
-    value: videoValue,
-    isValid: videoIsValid,
-    hasError: videoHasError,
-    valueChangeHandler: videoChangeHandler,
-    inputBlurHandler: videoBlurHandler,
-    reset: resetVideo,
-  } = useInput(isNotEmpty);
-  const {
-    value: imageValue,
-    isValid: imageIsValid,
-    hasError: imageHasError,
-    valueChangeHandler: imageChangeHandler,
-    inputBlurHandler: imageBlurHandler,
-    reset: resetImage,
-  } = useInput(isNotEmpty);
+  // const {
+  //   value: videoValue,
+  //   isValid: videoIsValid,
+  //   hasError: videoHasError,
+  //   valueChangeHandler: videoChangeHandler,
+  //   inputBlurHandler: videoBlurHandler,
+  //   reset: resetVideo,
+  // } = useInput(isNotEmpty);
+  // const {
+  //   value: imageValue,
+  //   isValid: imageIsValid,
+  //   hasError: imageHasError,
+  //   valueChangeHandler: imageChangeHandler,
+  //   inputBlurHandler: imageBlurHandler,
+  //   reset: resetImage,
+  // } = useInput(isNotEmpty);
 
   let navigate = useNavigate();
 
@@ -71,9 +74,9 @@ const AddCourse = (props) => {
     titleIsValid &&
     descriptionIsValid &&
     categoryIsValid &&
-    priceIsValid &&
-    videoIsValid &&
-    imageIsValid
+    priceIsValid 
+    // videoIsValid &&
+    // imageIsValid
   ) {
     formIsValid = true;
   }
@@ -87,33 +90,48 @@ const AddCourse = (props) => {
 
     const name = loggedUser.name;
 
-    props.onAddCourse({
-      title: titleValue,
-      description: descriptionValue,
-      category: categoryValue,
-      price: priceValue,
-      video: videoValue,
-      image: imageValue,
-      author: name,
-    });
+    props.onAddCourse(
+      // title: titleValue,
+      // description: descriptionValue,
+      // category: categoryValue,
+      // price: priceValue,
+      // video: videoValue,
+      // image: imageValue,
+      // author: name,
+      titleValue,
+      descriptionValue,
+      categoryValue,
+      priceValue,
+      image,
+      video,
+      name,
+    );
 
     resetTitle();
     resetDescription();
     resetCategory();
     resetPrice();
-    resetVideo();
-    resetImage();
+    // resetVideo();
+    // resetImage();
   };
 
   const backHandler = () => {
     navigate('/professorCourses');
   };
 
+  const videoChangeHandler = (e) => {
+    setVideo(e.target.files[0]);
+  }
+
+  const imageChangeHandler = (e) => {
+    setImage(e.target.files[0]);
+  }
+
   const titleClasses = titleHasError ? classes.invalid : classes;
   const descriptionClasses = descriptionHasError ? classes.invalid : classes;
   const priceClasses = priceHasError ? classes.invalid : classes;
-  const videoClasses = videoHasError ? classes.invalid : classes;
-  const imageClasses = imageHasError ? classes.invalid : classes;
+  // const videoClasses = videoHasError ? classes.invalid : classes;
+  // const imageClasses = imageHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -156,21 +174,21 @@ const AddCourse = (props) => {
         />
         <label htmlFor="video">Video</label>
         <input
-          className={videoClasses}
+          // className={videoClasses}
           id="video"
           type="file"
-          value={videoValue}
+          // value={videoValue}
           onChange={videoChangeHandler}
-          onBlur={videoBlurHandler}
+          // onBlur={videoBlurHandler}
         />
         <label htmlFor="image">Image</label>
         <input
-          className={imageClasses}
+          // className={imageClasses}
           id="image"
           type="file"
-          value={imageValue}
+          // value={imageValue}
           onChange={imageChangeHandler}
-          onBlur={imageBlurHandler}
+          // onBlur={imageBlurHandler}
         />
         <Button
           disabled={!formIsValid}

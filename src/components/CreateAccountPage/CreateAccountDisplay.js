@@ -6,6 +6,7 @@ import {
   serverTimestamp,
   setDoc,
   doc,
+  snapshotEqual,
 } from 'firebase/firestore';
 import {
   getAuth,
@@ -13,11 +14,14 @@ import {
   sendEmailVerification,
 } from 'firebase/auth';
 import { storage } from '../../firebase-config';
-import { ref, uploadBytes } from 'firebase/storage';
+import { ref, uploadBytes, getMetadata } from 'firebase/storage';
 import { v4 } from 'uuid';
 
 const db = getFirestore();
 const auth = getAuth();
+const metadata = {
+  contentType: 'resumes/pdf'
+}
 
 const CreateAccountDisplay = () => {
   const createAccountHandler = async (
@@ -43,9 +47,10 @@ const CreateAccountDisplay = () => {
           createdAt: serverTimestamp(),
         });
 
-        const resumeRef = ref(storage, `resumes/${fileValue.name + v4()}`)
-        await uploadBytes(resumeRef, fileValue)
-            console.log("image uploaded")
+        const resumeRef = ref(storage, `resumes/${fileValue.name}`)
+        uploadBytes(resumeRef, fileValue, metadata)
+          console.log("image uploaded")
+
         console.log('user created', cred.user);
       })
       .catch((err) => {
