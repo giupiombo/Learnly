@@ -1,0 +1,39 @@
+[debug] [2022-12-02T22:04:29.944Z] ----------------------------------------------------------------------
+[debug] [2022-12-02T22:04:29.947Z] Command:       /usr/local/bin/node /Users/giupiombo/Documents/TTU/Fall - 2022/Project Lab IV/app/node_modules/.bin/firebase init emulators
+[debug] [2022-12-02T22:04:29.948Z] CLI Version:   11.16.1
+[debug] [2022-12-02T22:04:29.948Z] Platform:      darwin
+[debug] [2022-12-02T22:04:29.948Z] Node Version:  v14.18.0
+[debug] [2022-12-02T22:04:29.952Z] Time:          Fri Dec 02 2022 16:04:29 GMT-0600 (Central Standard Time)
+[debug] [2022-12-02T22:04:29.952Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-02T22:04:30.020Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-02T22:04:30.020Z] > authorizing via signed-in user (giulia.piombo01@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/giupiombo/Documents/TTU/Fall - 2022/Project Lab IV/app
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-12-02T22:04:30.025Z] Using project from CLI flag: projectlab4-89008
+[debug] [2022-12-02T22:04:30.028Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/projectlab4-89008 [none]
+[debug] [2022-12-02T22:04:30.347Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/projectlab4-89008 200
+[debug] [2022-12-02T22:04:30.347Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/projectlab4-89008 {"projectId":"projectlab4-89008","projectNumber":"142241090923","displayName":"ProjectLab4","name":"projects/projectlab4-89008","resources":{"hostingSite":"projectlab4-89008","realtimeDatabaseInstance":"projectlab4-89008-default-rtdb","storageBucket":"projectlab4-89008.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_5174b9af-ce2b-4ffa-93fa-b98c2ee45547"}
+[info] i  Using project projectlab4-89008 (ProjectLab4) 
+[info] 
+=== Emulators Setup
