@@ -17,6 +17,7 @@ const Search = () => {
       description={course.description}
       category={course.category}
       image={course.image}
+      type="search"
     />
   ));
 

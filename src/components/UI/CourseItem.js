@@ -35,7 +35,8 @@ const CourseItem = (props) => {
   return (
     <div className={classes.item} onClick={clickHandler}>
       <h2>{props.title}</h2>
-      {props.type === 'categories' && !courseIds.includes(props.id) ? (
+      {(props.type === 'categories' || props.type === 'search') &&
+      !courseIds.includes(props.id) ? (
         <img src={`${props.image}`} alt="new" />
       ) : (
         <iframe src={props.video} allowFullScreen></iframe>

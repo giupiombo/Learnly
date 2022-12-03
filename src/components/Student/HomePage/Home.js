@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import CourseContext from '../../context/course-context';
-import UserContext from '../../context/user-context';
-import UserCourseContext from '../../context/user-courses-context';
-import CourseItem from '../UI/CourseItem';
+import CourseContext from '../../../context/course-context';
+import UserContext from '../../../context/user-context';
+import UserCourseContext from '../../../context/user-courses-context';
+import CourseItem from '../../UI/CourseItem';
 import classes from './Home.module.css';
 
 const Home = () => {

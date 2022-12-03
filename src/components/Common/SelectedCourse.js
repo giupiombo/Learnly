@@ -10,7 +10,7 @@ import SelectedCourseContext from '../../context/selected-course-context';
 import { useNavigate } from 'react-router-dom';
 import UserCourseContext from '../../context/user-courses-context';
 
-const SelectedCourse = (props) => {
+const SelectedCourse = () => {
   const { loggedUser } = useContext(UserContext);
   const { selectedCourse } = useContext(SelectedCourseContext);
   const { userCourses } = useContext(UserCourseContext);
