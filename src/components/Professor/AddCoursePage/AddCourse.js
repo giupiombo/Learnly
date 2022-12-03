@@ -49,23 +49,6 @@ const AddCourse = (props) => {
     reset: resetPrice,
   } = useInput(isPrice);
 
-  // const {
-  //   value: videoValue,
-  //   isValid: videoIsValid,
-  //   hasError: videoHasError,
-  //   valueChangeHandler: videoChangeHandler,
-  //   inputBlurHandler: videoBlurHandler,
-  //   reset: resetVideo,
-  // } = useInput(isNotEmpty);
-  // const {
-  //   value: imageValue,
-  //   isValid: imageIsValid,
-  //   hasError: imageHasError,
-  //   valueChangeHandler: imageChangeHandler,
-  //   inputBlurHandler: imageBlurHandler,
-  //   reset: resetImage,
-  // } = useInput(isNotEmpty);
-
   let navigate = useNavigate();
 
   let formIsValid = false;
@@ -75,8 +58,6 @@ const AddCourse = (props) => {
     descriptionIsValid &&
     categoryIsValid &&
     priceIsValid 
-    // videoIsValid &&
-    // imageIsValid
   ) {
     formIsValid = true;
   }
@@ -91,13 +72,6 @@ const AddCourse = (props) => {
     const name = loggedUser.name;
 
     props.onAddCourse(
-      // title: titleValue,
-      // description: descriptionValue,
-      // category: categoryValue,
-      // price: priceValue,
-      // video: videoValue,
-      // image: imageValue,
-      // author: name,
       titleValue,
       descriptionValue,
       categoryValue,
@@ -111,8 +85,6 @@ const AddCourse = (props) => {
     resetDescription();
     resetCategory();
     resetPrice();
-    // resetVideo();
-    // resetImage();
   };
 
   const backHandler = () => {
@@ -130,8 +102,6 @@ const AddCourse = (props) => {
   const titleClasses = titleHasError ? classes.invalid : classes;
   const descriptionClasses = descriptionHasError ? classes.invalid : classes;
   const priceClasses = priceHasError ? classes.invalid : classes;
-  // const videoClasses = videoHasError ? classes.invalid : classes;
-  // const imageClasses = imageHasError ? classes.invalid : classes;
 
   return (
     <Card className={classes.input}>
@@ -174,21 +144,15 @@ const AddCourse = (props) => {
         />
         <label htmlFor="video">Video</label>
         <input
-          // className={videoClasses}
           id="video"
           type="file"
-          // value={videoValue}
           onChange={videoChangeHandler}
-          // onBlur={videoBlurHandler}
         />
         <label htmlFor="image">Image</label>
         <input
-          // className={imageClasses}
           id="image"
           type="file"
-          // value={imageValue}
           onChange={imageChangeHandler}
-          // onBlur={imageBlurHandler}
         />
         <Button
           disabled={!formIsValid}

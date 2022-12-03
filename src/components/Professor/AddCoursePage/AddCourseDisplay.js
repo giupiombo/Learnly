@@ -5,12 +5,10 @@ import {
   getFirestore,
   setDoc,
   doc,
-  collection,
   updateDoc,
 } from 'firebase/firestore';
 import { storage } from '../../../firebase-config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { v4 } from 'uuid';
 
 const db = getFirestore();
 const metadata1 = {
@@ -28,7 +26,8 @@ const AddCourseDisplay = () => {
     categoryValue,
     priceValue,
     imageValue,
-    videoValue
+    videoValue,
+    name,
     ) => {
       const thumbnailRef = ref(storage, `thumbnails/${imageValue.name}`)
       await uploadBytes(thumbnailRef, imageValue, metadata1)
@@ -42,12 +41,12 @@ const AddCourseDisplay = () => {
               category: categoryValue,
               price: priceValue,
               image: url1,
+              author: name
             });
           })
-
       const videoRef = ref(storage, `courseVideos/${videoValue.name}`)
       await uploadBytes(videoRef, videoValue, metadata2)
-        getDownloadURL(ref(storage, `thumbnails/${imageValue.name}`))
+        getDownloadURL(ref(storage, `courseVideos/${videoValue.name}`))
           .then(async (url2) => {
             console.log(url2);
             const coursesRef = doc(db, 'courses', titleValue);
@@ -55,10 +54,6 @@ const AddCourseDisplay = () => {
               video: url2
             });
           })
-
-        
-      
-
         console.log('course added');
   };
 

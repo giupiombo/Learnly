@@ -4,13 +4,11 @@ import UserContext from '../../context/user-context';
 import Footer from '../Common/Footer';
 import Header from '../Common/Header';
 import Login from './Login';
-import firebaseConfig from '../../firebase-config';
-import { getFirestore, collection, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, getDoc, doc } from 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const db = getFirestore();
 const auth = getAuth();
-const colRef = collection(db, 'users');
 
 const LoginDisplay = () => {
   const { setUser } = useContext(UserContext);
