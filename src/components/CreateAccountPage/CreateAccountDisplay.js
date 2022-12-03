@@ -8,7 +8,7 @@ import {
   sendEmailVerification,
 } from 'firebase/auth';
 import { storage } from '../../firebase-config';
-import { ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const db = getFirestore();
 const auth = getAuth();
@@ -32,19 +32,27 @@ const CreateAccountDisplay = () => {
 
         const userValidation = accountTypeValue === 'student' ? true : false;
 
-        const docRef = doc(db, 'users', user.uid);
-        await setDoc(docRef, {
-          email: emailValue,
-          password: passwordValue,
-          reEnterPassword: reEnterPasswordValue,
-          name: nameValue,
-          accountType: accountTypeValue,
-          createdAt: serverTimestamp(),
-          userValidation: userValidation,
-        });
-
         const resumeRef = ref(storage, `resumes/${fileValue.name}`);
-        uploadBytes(resumeRef, fileValue, metadata);
+        await uploadBytes(resumeRef, fileValue, metadata);
+          getDownloadURL(ref(storage, `resumes/${fileValue.name}`))
+            .then(async (url) => {
+              console.log(url);
+              const docRef = doc(db, 'users', user.uid);
+              await setDoc(docRef, {
+                email: emailValue,
+                password: passwordValue,
+                reEnterPassword: reEnterPasswordValue,
+                name: nameValue,
+                accountType: accountTypeValue,
+                createdAt: serverTimestamp(),
+                userValidation: userValidation,
+                resumeFile: url,
+              });
+              console.log("user added")
+            })
+            .catch((err) => {
+              console.log(err.message)
+            })
         console.log('image uploaded');
 
         console.log('user created', cred.user);

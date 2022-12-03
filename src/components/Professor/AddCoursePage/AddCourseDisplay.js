@@ -6,9 +6,10 @@ import {
   setDoc,
   doc,
   collection,
+  updateDoc,
 } from 'firebase/firestore';
 import { storage } from '../../../firebase-config';
-import { ref, uploadBytes } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 
 const db = getFirestore();
@@ -29,22 +30,36 @@ const AddCourseDisplay = () => {
     imageValue,
     videoValue
     ) => {
-      const coursesRef = doc(collection(db, "courses"));
-        await setDoc(coursesRef, {
-          title: titleValue,
-          description: descriptionValue,
-          category: categoryValue,
-          price: priceValue,
-        });
-        console.log('course added');
-      
       const thumbnailRef = ref(storage, `thumbnails/${imageValue.name}`)
-        uploadBytes(thumbnailRef, imageValue, metadata1)
-          console.log("image uploaded")
+      await uploadBytes(thumbnailRef, imageValue, metadata1)
+        getDownloadURL(ref(storage, `thumbnails/${imageValue.name}`))
+          .then(async (url1) => {
+            console.log(url1);
+            const coursesRef = doc(db, 'courses', titleValue);
+            await setDoc(coursesRef, {
+              title: titleValue,
+              description: descriptionValue,
+              category: categoryValue,
+              price: priceValue,
+              image: url1,
+            });
+          })
 
       const videoRef = ref(storage, `courseVideos/${videoValue.name}`)
-        uploadBytes(videoRef, videoValue, metadata2)
-          console.log("video uploaded")
+      await uploadBytes(videoRef, videoValue, metadata2)
+        getDownloadURL(ref(storage, `thumbnails/${imageValue.name}`))
+          .then(async (url2) => {
+            console.log(url2);
+            const coursesRef = doc(db, 'courses', titleValue);
+            await updateDoc(coursesRef, {
+              video: url2
+            });
+          })
+
+        
+      
+
+        console.log('course added');
   };
 
   return (
