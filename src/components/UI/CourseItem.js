@@ -38,10 +38,7 @@ const CourseItem = (props) => {
       {props.type === 'categories' && !courseIds.includes(props.id) ? (
         <img src={`${props.image}`} alt="new" />
       ) : (
-        <iframe
-          src={`https://www.youtube.com/embed/${props.video}`}
-          allowFullScreen
-        ></iframe>
+        <iframe src={props.video} allowFullScreen></iframe>
       )}
       <div className={classes.row}>
         <p className={`${classes.heading} ${classes.noMargin}`}>
