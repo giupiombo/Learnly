@@ -4,8 +4,6 @@ import './App.css';
 import SelectedCourse from './components/Common/SelectedCourse';
 import CreateAccountDisplay from './components/CreateAccountPage/CreateAccountDisplay';
 import ForgotPasswordDisplay from './components/ForgotPasswordPage/ForgotPasswordDisplay';
-import ResetPasswordDisplay from './components/ForgotPasswordPage/ResetPasswordDisplay';
-import HomeDisplay from './components/HomePage/HomeDisplay';
 import Initial from './components/InitialPage/Initial';
 import LoginDisplay from './components/LoginPage/LoginDisplay';
 import AddCourseDisplay from './components/Professor/AddCoursePage/AddCourseDisplay';
@@ -13,6 +11,7 @@ import EditCourseDisplay from './components/Professor/EditCoursePage/EditCourseD
 import ProfessorCoursesDisplay from './components/Professor/ProfessorCoursesDisplay';
 import CategoriesDisplay from './components/Student/CategoriesPage/CategoriesDisplay';
 import CheckoutDisplay from './components/Student/CheckoutPage/CheckoutDisplay';
+import HomeDisplay from './components/Student/HomePage/HomeDisplay';
 import Search from './components/Student/SearchPage/Search';
 import StudentCoursesDisplay from './components/Student/StudentCoursesDisplay.js';
 import { CourseContextProvider } from './context/course-context';
@@ -39,10 +38,6 @@ function App() {
                   <Route
                     path="/forgotPassword"
                     element={<ForgotPasswordDisplay />}
-                  />
-                  <Route
-                    path="/resetPassword"
-                    element={<ResetPasswordDisplay />}
                   />
                   <Route path="/home" element={<HomeDisplay />} />
                   <Route path="/addCourse" element={<AddCourseDisplay />} />
