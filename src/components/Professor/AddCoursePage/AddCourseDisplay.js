@@ -1,12 +1,7 @@
 import Footer from '../../Common/Footer';
 import HeaderProfessor from '../HeaderProfessor';
 import AddCourse from './AddCourse';
-import {
-  getFirestore,
-  setDoc,
-  doc,
-  updateDoc,
-} from 'firebase/firestore';
+import { getFirestore, setDoc, doc, updateDoc, } from 'firebase/firestore';
 import { storage } from '../../../firebase-config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
@@ -27,7 +22,7 @@ const AddCourseDisplay = () => {
     priceValue,
     imageValue,
     videoValue,
-    name,
+    name
     ) => {
       const thumbnailRef = ref(storage, `thumbnails/${imageValue.name}`)
       await uploadBytes(thumbnailRef, imageValue, metadata1)
@@ -54,7 +49,7 @@ const AddCourseDisplay = () => {
               video: url2
             });
           })
-        console.log('course added');
+    console.log('course added');
   };
 
   return (
