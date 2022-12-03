@@ -43,17 +43,11 @@ const SelectedCourse = (props) => {
         <h2>{selectedCourse.title}</h2>
         <img src={selectedCourse.image} alt="new" />
         {loggedUser.accountType === 'professor' && (
-          <iframe
-            src={`https://www.youtube.com/embed/${selectedCourse.video}`}
-            allowFullScreen
-          ></iframe>
+          <iframe src={selectedCourse.video} allowFullScreen></iframe>
         )}
         {loggedUser.accountType === 'student' &&
           courseIds.includes(selectedCourse.id) && (
-            <iframe
-              src={`https://www.youtube.com/embed/${selectedCourse.video}`}
-              allowFullScreen
-            ></iframe>
+            <iframe src={selectedCourse.video} allowFullScreen></iframe>
           )}
         <div className={classes.row}>
           <p className={`${classes.heading} ${classes.noMargin}`}>
