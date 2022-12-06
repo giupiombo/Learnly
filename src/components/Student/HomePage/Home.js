@@ -50,22 +50,26 @@ const Home = () => {
   }
 
   const topPick = [];
-  for (const course of courses) {
-    if (
-      course.category === loggedUserCourses[0].category &&
-      !courseIds.includes(course.id)
-    ) {
-      topPick.push({
-        id: course.id,
-        author: course.author,
-        title: course.title,
-        description: course.description,
-        category: course.category,
-        price: course.price,
-        video: course.video,
-        image: course.image,
-      });
+  let i = 0;
+  while (topPick.length === 0 && i < loggedUserCourses.length) {
+    for (const course of courses) {
+      if (
+        course.category === loggedUserCourses[i].category &&
+        !courseIds.includes(course.id)
+      ) {
+        topPick.push({
+          id: course.id,
+          author: course.author,
+          title: course.title,
+          description: course.description,
+          category: course.category,
+          price: course.price,
+          video: course.video,
+          image: course.image,
+        });
+      }
     }
+    i++;
   }
 
   return (
@@ -74,16 +78,20 @@ const Home = () => {
       <h2>In progress</h2>
       {courseList}
       <h2>Top pick for you</h2>
-      <CourseItem
-        title={topPick[0].title}
-        description={topPick[0].description}
-        category={topPick[0].category}
-        price={topPick[0].price}
-        video={topPick[0].video}
-        image={topPick[0].image}
-        author={topPick[0].author}
-        type={'categories'}
-      />
+      {topPick.length !== 0 ? (
+        <CourseItem
+          title={topPick[0].title}
+          description={topPick[0].description}
+          category={topPick[0].category}
+          price={topPick[0].price}
+          video={topPick[0].video}
+          image={topPick[0].image}
+          author={topPick[0].author}
+          type={'categories'}
+        />
+      ) : (
+        <h3>No recommendations at the moment...</h3>
+      )}
     </div>
   );
 };
