@@ -31,9 +31,6 @@ const SearchBar = () => {
 
   const searchHandler = (e) => {
     e.preventDefault();
-    console.log('submit');
-    console.log(searchInput);
-    console.log(filterTitles);
 
     const searchCourses = [];
     for (const course of courses) {
@@ -43,8 +40,6 @@ const SearchBar = () => {
     }
 
     setSearchedCourses(searchCourses);
-
-    console.log(searchCourses);
 
     navigate('/search');
   };
